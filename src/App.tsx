@@ -82,11 +82,12 @@ export default function App() {
       const hash = window.location.hash.replace(/^#/, '');
       if (hash === 'past-events') {
         setCurrentView('past-events');
+        setSelectedEvent(null);
       } else if (hash && hash !== 'contribute' && hash !== 'events-section') {
         const found = getEventById(hash);
-        if (found) {
-          setSelectedEvent(found);
-        }
+        setSelectedEvent(found || null);
+      } else {
+        setSelectedEvent(null);
       }
     };
 
@@ -98,14 +99,14 @@ export default function App() {
   const handleSelectEvent = (event: EventItem) => {
     setSelectedEvent(event);
     const search = window.location.search;
-    window.history.replaceState(null, '', `${search}#${event.id}`);
+    window.history.pushState(null, '', `${search}#${event.id}`);
   };
 
   const handleCloseModal = () => {
     setSelectedEvent(null);
     const search = window.location.search;
     const target = currentView === 'past-events' ? `${search}#past-events` : (search || window.location.pathname);
-    window.history.replaceState(null, '', target);
+    window.history.pushState(null, '', target);
   };
 
   const handleNavigate = (view: 'home' | 'past-events') => {
