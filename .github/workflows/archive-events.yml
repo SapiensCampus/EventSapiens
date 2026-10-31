@@ -1,9 +1,9 @@
-name: Monthly Automated Event Archiver
+name: Automated Event Archiver
 
 on:
   schedule:
-    # Runs at 00:00 on the 1st of every month
-    - cron: '0 0 1 * *'
+    # Runs daily at 00:00 UTC (05:30 AM IST)
+    - cron: '0 0 * * *'
   workflow_dispatch:
     inputs:
       dry_run:
