@@ -9,8 +9,8 @@ import {
   Instagram,
   Youtube,
   Linkedin,
-  MessageCircle,
 } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 interface FooterProps {
   onNavigate: (view: "home" | "past-events") => void;
@@ -128,7 +128,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 aria-label="Sapiens Campus WhatsApp Community"
                 title="Sapiens Campus WhatsApp Community"
               >
-                <MessageCircle className="w-4 h-4 stroke-[2.5]" />
+                <FaWhatsapp className="w-4 h-4" />
               </a>
 
               <a
