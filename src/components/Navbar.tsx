@@ -29,7 +29,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
   return (
     <header className="w-full bg-[#FFF8DC] pt-5 pb-3 sticky top-0 z-40 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3">
         <a
           href={import.meta.env.BASE_URL}
           onClick={(e) => {
@@ -46,7 +46,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             EventSapiens
           </span>
         </a>
-        <div className="hidden sm:flex items-center gap-2.5">
+        <div className="hidden md:flex items-center gap-2.5">
           <button
             onClick={() => handleNav(currentView === 'home' ? 'past-events' : 'home')}
             className="border-2 border-black bg-white/70 hover:bg-white text-black px-4 py-2 rounded-xl text-xs sm:text-sm font-bold shadow-[2px_2px_0px_#000] cursor-pointer transition-all active:translate-x-[1px] active:translate-y-[1px] active:shadow-none"
@@ -75,7 +75,17 @@ export const Navbar: React.FC<NavbarProps> = ({
           </a>
         </div>
 
-        <div className="flex sm:hidden items-center gap-2">
+        <div className="flex md:hidden items-center gap-2">
+          <a
+            href={GITHUB_CONTRIBUTORS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${contributorsCount} contributors on GitHub`}
+            className="inline-flex items-center gap-1.5 border-2 border-black bg-[#FFDE59] px-2.5 py-1.5 rounded-lg text-xs font-black shadow-[2px_2px_0px_#000]"
+          >
+            <Users className="w-4 h-4 stroke-[2.5]" aria-hidden="true" />
+            <span>{contributorsCount}</span>
+          </a>
           <button
             type="button"
             onClick={() => setMobileMenuOpen((isOpen) => !isOpen)}
@@ -92,7 +102,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       {mobileMenuOpen && (
         <div
           id="mobile-navigation"
-          className="sm:hidden border-y-2 border-black bg-[#FFDE59] p-4 mt-3 space-y-2 text-sm font-bold shadow-[0_4px_0_#000]"
+          className="md:hidden border-y-2 border-black bg-[#FFDE59] p-4 mt-3 space-y-2 text-sm font-bold shadow-[0_4px_0_#000]"
         >
           <button
             type="button"
@@ -109,7 +119,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center justify-between w-full py-2 px-3 border-2 border-black rounded-lg bg-white text-black font-bold"
+            className="flex items-center justify-between w-full py-2 px-3 border-2 border-black rounded-lg bg-white text-black"
           >
             <span className="flex items-center gap-2">
               <Users className="w-4 h-4 stroke-[2.5]" aria-hidden="true" />
