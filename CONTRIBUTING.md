@@ -1,19 +1,19 @@
-# Contributing Code & Website Edits to EventSapien
+# Contributing Code & Website Edits to EventSapiens
 
-Thank you for your interest in improving **EventSapien**!
+Thank you for your interest in improving **EventSapiens**!
 
 ---
 
 > 📢 **Looking to submit a college event, hackathon, or symposium?**  
 > You don't need to touch any code! Please follow our dedicated **[ADDING_AN_EVENT.md](ADDING_AN_EVENT.md)** guide.
 >
-> **This guide (`CONTRIBUTING.md`) is specifically for software developers** who want to fix bugs, build new features, enhance the UI/UX, or improve the developer tooling of the EventSapien platform.
+> **This guide (`CONTRIBUTING.md`) is specifically for software developers** who want to fix bugs, build new features, enhance the UI/UX, or improve the developer tooling of the EventSapiens platform.
 
 ---
 
 ## 🛠️ Tech Stack & Philosophy
 
-EventSapien is built with modern web technologies:
+EventSapiens is built with modern web technologies:
 
 - **Frontend Framework:** React 19
 - **Language:** TypeScript (strict mode)
@@ -166,7 +166,7 @@ The app will start at `http://localhost:5173`. Hot module reloading will automat
 
 ## 💛 Community & Support
 
-EventSapien is an open-source initiative brought to you by **CodeSapiens TamilNadu**, initiated by **Kee** ([Keerthana](https://www.linkedin.com/in/keerthana-m-g-12ba59256/)) and **JK** ([Jayakanth](https://www.linkedin.com/in/jayakanth-sivakumar-434851257/)).
+EventSapiens is an open-source initiative brought to you by **CodeSapiens TamilNadu**, initiated by **Kee** ([Keerthana](https://www.linkedin.com/in/keerthana-m-g-12ba59256/)) and **JK** ([Jayakanth](https://www.linkedin.com/in/jayakanth-sivakumar-434851257/)).
 
 - **WhatsApp:** [Join our community chat](https://chat.whatsapp.com/IiaPFDThmGk9UEoYzvoXWU)
 - **LinkedIn:** [CodeSapiens Community](https://www.linkedin.com/company/codesapiens-community/posts/)

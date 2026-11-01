@@ -23,7 +23,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
       <div className="w-full pointer-events-none select-none overflow-hidden">
         <img
           src={`${import.meta.env.BASE_URL}assets/images/footer%20image.png`}
-          alt="Chennai Egmore Station with EventSapien Mascot"
+          alt="Chennai Egmore Station with EventSapiens Mascot"
           className="w-full h-auto block -mb-[28px]"
           loading="lazy"
         />
@@ -37,7 +37,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Left: Brand & Info */}
           <div className="space-y-1.5">
             <span className="font-extrabold text-2xl sm:text-3xl tracking-tight text-[#FFDE59] block">
-              EventSapien
+              EventSapiens
             </span>
 
             <p className="text-xs sm:text-sm text-neutral-300">

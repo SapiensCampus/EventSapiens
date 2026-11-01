@@ -6,7 +6,7 @@
 import React from 'react';
 import { ExternalLink, Layers, MapPin } from 'lucide-react';
 import type { EventItem } from '../types/event';
-import { getRegistrationStatus } from '../lib/event-utils';
+import { getRegistrationStatus, sanitizeExternalUrl } from '../lib/event-utils';
 
 interface EventCardProps {
   event: EventItem;
@@ -24,6 +24,7 @@ export const EventCard: React.FC<EventCardProps> = ({
     event.event_date,
     referenceDateStr
   );
+  const safeRegUrl = sanitizeExternalUrl(event.registration_url);
 
   // Month tag color
   const monthName = new Date(event.event_date + 'T00:00:00Z').toLocaleString('en-US', {
@@ -117,9 +118,9 @@ export const EventCard: React.FC<EventCardProps> = ({
           View Details &rarr;
         </button>
 
-        {event.registration_url && status !== 'Closed' && (
+        {safeRegUrl && status !== 'Closed' && (
           <a
-            href={event.registration_url}
+            href={safeRegUrl}
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}

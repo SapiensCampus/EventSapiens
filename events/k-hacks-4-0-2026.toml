@@ -1,0 +1,27 @@
+title = "K! Hacks 4.0"
+description = "K! Hacks 4.0 is a national-level hackathon organized by CEG Tech Forum, Anna University. The event consists of two rounds: an online idea submission round followed by a 24-hour offline hackathon. Participants can develop innovative solutions in domains including Women Empowerment, FinTech, Health Tech, Disaster Management, Environment & Sustainability, and Agentic AI. Top 25 teams will be shortlisted for the offline finale. Winners will receive cash prizes and an opportunity to showcase their projects at Kurukshetra 2027."
+organizer = "CEG Tech Forum, Anna University"
+category = "Hackathon"
+mode = "Offline"
+event_date = "2026-12-18"
+end_date = "2026-12-19"
+registration_deadline = "2026-11-26"
+registration_url = "https://k-hacks.kurukshetraceg.org.in/"
+website = "https://k-hacks.kurukshetraceg.org.in/"
+city = "Chennai"
+venue = "Anna University, CEG Campus, Chennai"
+fee = "Free"
+tags = [
+  "Hackathon",
+  "National Level",
+  "Artificial Intelligence",
+  "Agentic AI",
+  "FinTech",
+  "Health Tech",
+  "Women Empowerment",
+  "Disaster Management",
+  "Environment",
+  "Engineering",
+  "Student Event"
+]
+

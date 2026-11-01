@@ -1,0 +1,28 @@
+title = "HackSprint 3.0 – Build Bold, Ride Beyond"
+description = "HackSprint 3.0 is a national-level 36-hour hackathon organized by the Department of Computer Science and Engineering at Karpagam Academy of Higher Education (KAHE), Coimbatore, in collaboration with the Metaverse Association. The event follows a two-round format, beginning with an online idea submission and screening round, followed by a 36-hour offline hackathon for shortlisted teams. Participants must submit a PowerPoint presentation explaining their problem statement, proposed solution, innovation, feasibility, expected impact, and team portfolio. The hackathon features five tracks: Agrotech, MedTech, EduTech, WildVisionTech, and Open Innovation. Participants will develop working prototypes and present their solutions to a judging panel."
+organizer = "Department of Computer Science and Engineering, Karpagam Academy of Higher Education"
+category = "Hackathon"
+mode = "Hybrid"
+event_date = "2027-01-29"
+end_date = "2027-01-30"
+registration_deadline = "2026-12-28"
+registration_url = "https://eventopia.in/event/hacksprint-30-2027-01-29-6u5"
+website = "https://eventopia.in/event/hacksprint-30-2027-01-29-6u5"
+city = "Coimbatore"
+venue = "Karpagam Academy of Higher Education, Coimbatore, Tamil Nadu"
+fee = "Free"
+tags = [
+  "Hackathon",
+  "National Level",
+  "Artificial Intelligence",
+  "Agrotech",
+  "MedTech",
+  "EduTech",
+  "Wildlife Conservation",
+  "Machine Learning",
+  "Open Innovation",
+  "Technology",
+  "Engineering",
+  "Student Event"
+]
+

@@ -48,6 +48,7 @@ export const EventDiscoveryBar: React.FC<EventDiscoveryBarProps> = ({
           />
           {searchQuery && (
             <button
+              type="button"
               onClick={() => onSearchChange('')}
               className="absolute inset-y-0 right-0 pr-2.5 flex items-center text-black"
               aria-label="Clear search"

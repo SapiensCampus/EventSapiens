@@ -1,0 +1,28 @@
+title = "COBOT-EX 2026 – Inter-College Hackathon"
+description = "COBOT-EX 2026 is an inter-college hackathon organized by the Crescent Club of Cobotics at B.S. Abdur Rahman Crescent Institute of Science and Technology, Chennai. The event brings together student innovators and developers to build technology-driven solutions through rapid ideation, design, development, testing, and presentation. Participants collaborate in small teams to solve problems, develop working prototypes, and demonstrate their technical and problem-solving abilities before judges. The event is part of COBOT-EX 2026, an inter-college technology event that also features a separate project expo."
+organizer = "Crescent Club of Cobotics, B.S. Abdur Rahman Crescent Institute of Science and Technology"
+category = "Hackathon"
+mode = "Offline"
+event_date = "2026-11-10"
+end_date = "2026-11-10"
+registration_deadline = "2026-11-05"
+registration_url = "https://unstop.com/hackathons/cobot-ex-2026-inter-college-hackathon-b-s-abdur-rahman-crescent-institute-of-science-and-technology-chennai-t-1783202"
+website = "https://unstop.com/hackathons/cobot-ex-2026-inter-college-hackathon-b-s-abdur-rahman-crescent-institute-of-science-and-technology-chennai-t-1783202"
+city = "Chennai"
+venue = "B.S. Abdur Rahman Crescent Institute of Science and Technology, Vandalur, Chennai, Tamil Nadu"
+fee = "₹250 per team"
+tags = [
+  "Hackathon",
+  "Inter-College",
+  "Robotics",
+  "Cobotics",
+  "Artificial Intelligence",
+  "Machine Learning",
+  "IoT",
+  "Automation",
+  "Technology",
+  "Innovation",
+  "Engineering",
+  "Student Event"
+]
+

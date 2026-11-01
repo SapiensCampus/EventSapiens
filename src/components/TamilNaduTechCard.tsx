@@ -23,7 +23,7 @@ export const TamilNaduTechCard: React.FC = () => {
             </h3>
 
             <p className="text-xs sm:text-sm font-medium text-black/85 leading-relaxed">
-              While <strong>EventSapien</strong> curates student symposiums, collegiate hackathons, and campus workshops, you can explore grassroots tech meetups, developer groups, and community conferences across Tamil Nadu on{' '}
+              While <strong>EventSapiens</strong> curates student symposiums, collegiate hackathons, and campus workshops, you can explore grassroots tech meetups, developer groups, and community conferences across Tamil Nadu on{' '}
               <a
                 href="https://tamilnadu.tech"
                 target="_blank"

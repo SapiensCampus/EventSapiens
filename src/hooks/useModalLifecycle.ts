@@ -33,7 +33,16 @@ export function useModalLifecycle(isOpen: boolean, onClose: () => void): void {
     document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', handleKeyDown);
     const animationFrame = window.requestAnimationFrame(() => {
-      document.querySelector<HTMLElement>('[data-modal-autofocus]')?.focus();
+      const autofocusEl = document.querySelector<HTMLElement>('[data-modal-autofocus]');
+      if (autofocusEl) {
+        autofocusEl.focus();
+        return;
+      }
+      const dialog = document.querySelector<HTMLElement>('[role="dialog"][aria-modal="true"]');
+      const firstFocusable = dialog?.querySelector<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      (firstFocusable || dialog)?.focus();
     });
 
     return () => {

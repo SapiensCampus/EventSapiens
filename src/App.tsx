@@ -33,6 +33,32 @@ export default function App() {
   const [isContributeModalOpen, setIsContributeModalOpen] = useState(false);
   const referenceDate = useMemo(() => getEffectiveDateString(), []);
 
+  // Initialize filters from URL query parameters on load
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get('q') || params.get('search');
+    const mode = params.get('mode');
+    const cat = params.get('category');
+    if (q) setSearchQuery(q);
+    if (mode && ['Online', 'Offline', 'Hybrid'].includes(mode)) setSelectedMode(mode);
+    if (cat) setSelectedCategory(cat);
+  }, []);
+
+  // Synchronize filter updates into URL query parameters
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    if (searchQuery) url.searchParams.set('q', searchQuery);
+    else url.searchParams.delete('q');
+
+    if (selectedMode !== 'all') url.searchParams.set('mode', selectedMode);
+    else url.searchParams.delete('mode');
+
+    if (selectedCategory !== 'all') url.searchParams.set('category', selectedCategory);
+    else url.searchParams.delete('category');
+
+    window.history.replaceState(null, '', url.toString());
+  }, [searchQuery, selectedMode, selectedCategory]);
+
   // Load events
   const activeEvents = useMemo(() => loadActiveEvents(), []);
   const archivedEvents = useMemo(() => loadArchivedEvents(), []);
@@ -151,7 +177,6 @@ export default function App() {
       <Navbar
         currentView={currentView}
         onNavigate={handleNavigate}
-        onOpenContributeModal={() => setIsContributeModalOpen(true)}
       />
 
       <main className="flex-1">

@@ -1,7 +1,7 @@
-# Adding an Event to EventSapien
+# Adding an Event to EventSapiens
 
 > **A guide for student organizers, symposium teams, club leads, and campus ambassadors.**  
-> You do **not** need to know React, TypeScript, or coding to list your college event on EventSapien. Adding an event takes less than 3 minutes!
+> You do **not** need to know React, TypeScript, or coding to list your college event on EventSapiens. Adding an event takes less than 3 minutes!
 
 If you want to contribute code, fix bugs, or improve the website itself, please see **[CONTRIBUTING.md](CONTRIBUTING.md)**.
 
@@ -13,7 +13,7 @@ Choose whichever method is easiest for you:
 
 ### Method 1: In-Browser via GitHub (No terminal needed — Recommended)
 
-1. **Fork the Repository:** Click the **Fork** button at the top right of [EventSapien on GitHub](https://github.com/CodeSapiens-in/EventSapiens).
+1. **Fork the Repository:** Click the **Fork** button at the top right of [EventSapiens on GitHub](https://github.com/CodeSapiens-in/EventSapiens).
 2. **Navigate to Events:** In your fork, go into the `events/` folder.
 3. **Create a New File:** Click **Add file** → **Create new file**.
 4. **Name Your File:** Use lowercase kebab-case ending with `.toml`:
@@ -32,7 +32,7 @@ Choose whichever method is easiest for you:
 
 ### Method 2: Using the Website TOML Generator
 
-1. Visit [EventSapien](https://eventsapiens.in) in your browser.
+1. Visit [EventSapiens](https://eventsapiens.in) in your browser.
 2. Scroll to the **"Host an event for students? Add it here"** section or click **Contribute**.
 3. Fill out the interactive event form (title, dates, college/organizer, venue, registration URL).
 4. Click **Generate TOML** — you can copy the generated file or click the direct GitHub button to create the file with pre-filled content.

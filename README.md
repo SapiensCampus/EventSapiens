@@ -1,4 +1,4 @@
-# EventSapien
+# EventSapiens
 
 > **Namma ooru student events**  
 > A shared place for students across Tamil Nadu to discover college hackathons, technical symposiums, workshops, and student developer opportunities.

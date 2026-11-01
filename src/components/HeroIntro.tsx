@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Search,
   MapPin,
@@ -55,6 +55,10 @@ export const HeroIntro: React.FC<HeroIntroProps> = ({
 }) => {
   const [query, setQuery] = useState(initialSearchQuery);
   const [selectedCity, setSelectedCity] = useState("Tamil Nadu");
+
+  useEffect(() => {
+    setQuery(initialSearchQuery);
+  }, [initialSearchQuery]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

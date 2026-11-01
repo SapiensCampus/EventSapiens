@@ -56,8 +56,9 @@ export const EventSapienMascot: React.FC<EventSapienMascotProps> = ({
       }
       role={!isLogo ? 'button' : undefined}
       tabIndex={!isLogo ? 0 : undefined}
-      title={!isLogo ? "Click me!" : "EventSapien Logo"}
-      aria-label="EventSapien Mascot"
+      title={!isLogo ? "Click me!" : undefined}
+      aria-label={!isLogo ? "EventSapiens Mascot" : undefined}
+      aria-hidden={isLogo ? true : undefined}
       style={{ cursor: !isLogo ? 'pointer' : 'default' }}
     >
       {/* Interactive Speech Bubble for Hero variant */}
@@ -82,7 +83,7 @@ export const EventSapienMascot: React.FC<EventSapienMascotProps> = ({
       >
         <img
           src={`${import.meta.env.BASE_URL}assets/images/monkey_logo.png`}
-          alt="EventSapien Mascot"
+          alt={!isLogo ? "EventSapiens Mascot" : ""}
           className="w-full h-full object-contain pointer-events-none select-none drop-shadow-[0_4px_12px_rgba(0,0,0,0.06)]"
           loading="eager"
         />

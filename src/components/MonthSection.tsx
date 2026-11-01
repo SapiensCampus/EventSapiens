@@ -24,7 +24,7 @@ export const MonthSection: React.FC<MonthSectionProps> = ({
         <div className="flex items-center gap-3">
           <h2 className="text-2xl sm:text-3xl font-black text-black tracking-tight">
             {monthGroup.key === 'this-month' || monthGroup.isThisMonth
-              ? 'This month'
+              ? 'Registration closing this month'
               : monthGroup.key === 'upcoming'
               ? 'Upcoming'
               : monthGroup.label.charAt(0).toUpperCase() + monthGroup.label.slice(1)}

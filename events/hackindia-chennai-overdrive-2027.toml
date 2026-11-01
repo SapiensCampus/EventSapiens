@@ -1,0 +1,31 @@
+title = "HackIndia Chennai Overdrive 2027"
+description = "HackIndia Chennai Overdrive 2027 is an innovation-driven hackathon hosted by HackIndia at Muthayammal Engineering College, Tamil Nadu. The event brings together student developers, designers, and technology enthusiasts to build practical solutions for real-world challenges. Participants can explore five major tracks: Artificial Intelligence and AI Agents, Blockchain and Web3, DeepTech Innovation, Hardware, IoT and Embedded Systems, and Open Innovation. The competition includes an evaluation and shortlisting process, mentorship, technical evaluation, and final project pitching. Only teams shortlisted through the evaluation process will be invited to participate in the offline hackathon. Projects are evaluated based on innovation, technical implementation, real-world impact, usability, scalability, and presentation."
+organizer = "HackIndia"
+category = "Hackathon"
+mode = "Offline"
+event_date = "2027-02-11"
+end_date = "2027-02-12"
+registration_deadline = "2027-02-10"
+registration_url = "https://hackindia.org/2027/hackindia-chennai-overdrive-2027"
+website = "https://hackindia.org/2027/hackindia-chennai-overdrive-2027"
+city = "Rasipuram"
+venue = "Muthayammal Engineering College, Kakkaveri, Rasipuram, Namakkal District, Tamil Nadu"
+fee = "Free"
+tags = [
+  "Hackathon",
+  "National Level",
+  "Artificial Intelligence",
+  "AI Agents",
+  "Generative AI",
+  "Blockchain",
+  "Web3",
+  "DeepTech",
+  "Cybersecurity",
+  "IoT",
+  "Embedded Systems",
+  "Robotics",
+  "Open Innovation",
+  "Engineering",
+  "Student Event"
+]
+

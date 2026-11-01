@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react';
-import { X, Copy, Check, Download, ExternalLink, Code2, AlertCircle } from 'lucide-react';
+import { X, Copy, Check, Download, ExternalLink, Code2, AlertCircle, RotateCcw } from 'lucide-react';
 import { validateEventData } from '../lib/event-utils';
 import { copyText } from '../lib/clipboard';
 import { createEventSlug, serializeEventToToml } from '../lib/event-toml';
@@ -82,6 +82,23 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({ isOpen, onClos
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+  };
+
+  const handleResetForm = () => {
+    setTitle('');
+    setDescription('');
+    setOrganizer('');
+    setCategory('Hackathon');
+    setMode('Offline');
+    setEventDate('');
+    setEndDate('');
+    setRegDeadline('');
+    setRegUrl('');
+    setCity('');
+    setVenue('');
+    setFee('');
+    setTagsInput('');
+    setCopied(false);
   };
 
   return (
@@ -360,6 +377,17 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({ isOpen, onClos
                 >
                   <Download className="w-4 h-4 stroke-[2.5]" />
                   <span>DOWNLOAD</span>
+                </button>
+
+                <button
+                  onClick={handleResetForm}
+                  type="button"
+                  title="Reset all form fields"
+                  aria-label="Reset form fields"
+                  className="inline-flex items-center justify-center gap-1.5 py-2.5 px-3 text-xs font-black uppercase tracking-wider text-[#171717] bg-white hover:bg-neutral-100 border-2 border-[#171717] shadow-[3px_3px_0px_#171717] active:shadow-none transition-all cursor-pointer"
+                >
+                  <RotateCcw className="w-4 h-4 stroke-[2.5]" />
+                  <span>RESET</span>
                 </button>
               </div>
 

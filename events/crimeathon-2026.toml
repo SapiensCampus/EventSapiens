@@ -1,0 +1,27 @@
+title = "CRIMEATHON 2026"
+description = "CRIMEATHON 2026 is a 24-hour cybersecurity investigation hackathon organized by SIMATS Sentrix Cyber Club at SIMATS University, Chennai. Participants investigate simulated cyber incidents by analysing digital evidence, system logs, network traces, and forensic artifacts. Teams reconstruct attack timelines, identify adversaries and attack vectors, and develop practical detection, mitigation, and defence strategies. The competition focuses on cybersecurity, ethical hacking, digital forensics, OSINT, network security, and incident response. Participants present their investigation findings to an evaluation panel."
+organizer = "SIMATS Sentrix Cyber Club"
+category = "Hackathon"
+mode = "Offline"
+event_date = "2026-11-19"
+end_date = "2026-11-20"
+registration_deadline = "2026-11-15"
+registration_url = "https://crimeathon.in/"
+website = "https://crimeathon.in/"
+city = "Chennai"
+venue = "SIMATS Engineering, SIMATS University, Thandalam, Chennai, Tamil Nadu"
+fee = "₹400 per team"
+tags = [
+  "Cybersecurity",
+  "Hackathon",
+  "Digital Forensics",
+  "Ethical Hacking",
+  "OSINT",
+  "Network Security",
+  "Incident Response",
+  "Security Research",
+  "Digital Investigation",
+  "Engineering",
+  "Student Event"
+]
+
