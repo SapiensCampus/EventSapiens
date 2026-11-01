@@ -32,7 +32,7 @@ export const EventDiscoveryBar: React.FC<EventDiscoveryBarProps> = ({
   const isFiltered = Boolean(searchQuery) || selectedMode !== 'all' || selectedCategory !== 'all';
 
   return (
-    <div id="events-section" className="pt-6 pb-6">
+    <div className="pt-6 pb-6">
       <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
         <div className="sm:col-span-6 relative">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-black">
