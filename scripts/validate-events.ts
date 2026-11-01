@@ -12,6 +12,7 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { parse } from 'smol-toml';
 import { validateEventData } from '../src/lib/event-utils';
+import { runArchiver } from './archive-events';
 
 const EVENTS_DIR = path.resolve(process.cwd(), 'events');
 const ARCHIVE_FILE = path.resolve(process.cwd(), 'src/data/archived.json');
@@ -23,7 +24,14 @@ export interface ValidationSummary {
   errorsByFile: Record<string, string[]>;
 }
 
-export function validateAllEvents(): ValidationSummary {
+export function validateAllEvents(autoArchive = true): ValidationSummary {
+  if (autoArchive) {
+    try {
+      runArchiver(false);
+    } catch (err) {
+      console.warn('[Eventsapiens Validator] Auto-archive notice:', err);
+    }
+  }
   console.log(`[Eventsapiens Validator] Inspecting event TOML files in ${EVENTS_DIR}...`);
 
   if (!fs.existsSync(EVENTS_DIR)) {

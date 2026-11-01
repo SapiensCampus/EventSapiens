@@ -43,11 +43,16 @@ export const getEffectiveDateString = (override?: string): string => {
     }
     return override;
   }
-  const now = new Date();
-  const year = now.getUTCFullYear();
-  const month = String(now.getUTCMonth() + 1).padStart(2, '0');
-  const day = String(now.getUTCDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
+  const tz = (typeof Intl !== 'undefined' ? Intl.DateTimeFormat().resolvedOptions().timeZone : 'UTC') || 'UTC';
+  try {
+    return new Intl.DateTimeFormat('en-CA', { timeZone: tz }).format(new Date());
+  } catch {
+    const now = new Date();
+    const year = now.getUTCFullYear();
+    const month = String(now.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(now.getUTCDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
 };
 
 /**
@@ -90,11 +95,11 @@ export function getRegistrationStatus(
  * Uses end_date if provided, otherwise event_date.
  */
 export function isArchivedEligible(
-  event: { event_date: string; end_date?: string },
+  event: { event_date: string; end_date?: string; registration_deadline?: string },
   refDateStr?: string
 ): boolean {
   const todayStr = getEffectiveDateString(refDateStr);
-  const compareDate = event.end_date || event.event_date;
+  const compareDate = event.registration_deadline || event.event_date;
   return compareDate < todayStr;
 }
 

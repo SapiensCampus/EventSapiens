@@ -107,7 +107,7 @@ export function runArchiver(dryRun = isDryRun, customDate = referenceDateStr): A
           // Even if duplicate in archive, delete active TOML to clear completed event
           filesToDelete.push(filePath);
         } else {
-          console.log(`[Archive Target] ${slug} (concluded on ${parsed.end_date || parsed.event_date})`);
+          console.log(`[Archive Target] ${slug} (concluded on ${parsed.registration_deadline || parsed.event_date})`);
           newlyArchived.push({
             ...parsed,
             id: slug,
