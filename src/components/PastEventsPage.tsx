@@ -99,6 +99,7 @@ export const PastEventsPage: React.FC<PastEventsPageProps> = ({
             />
             {searchQuery && (
               <button
+                type="button"
                 onClick={() => setSearchQuery('')}
                 className="absolute inset-y-0 right-0 pr-2.5 flex items-center text-black"
                 aria-label="Clear past event search"
@@ -139,18 +140,21 @@ export const PastEventsPage: React.FC<PastEventsPageProps> = ({
           </div>
         </div>
 
-        {isFiltered && (
-          <div className="flex items-center justify-between pb-4 text-xs font-bold text-black">
-            <span>{filtered.length} past events found</span>
+        <div className="flex items-center justify-between pb-4 text-xs font-bold text-black">
+          <span className="font-mono">
+            {filtered.length} {filtered.length === 1 ? 'past event' : 'past events'} found
+          </span>
+          {isFiltered && (
             <button
+              type="button"
               onClick={handleReset}
               className="inline-flex items-center gap-1 hover:underline cursor-pointer"
             >
               <RotateCcw className="w-3 h-3" />
               <span>Reset filters</span>
             </button>
-          </div>
-        )}
+          )}
+        </div>
 
         {filtered.length > 0 ? (
           <div className="space-y-10">
@@ -158,7 +162,7 @@ export const PastEventsPage: React.FC<PastEventsPageProps> = ({
               <div key={group.key}>
                 <div className="flex items-center justify-between border-b-[2px] border-black pb-2 mb-5">
                   <h2 className="text-xl sm:text-2xl font-black text-black tracking-tight">
-                    {group.label.toLowerCase()}
+                    {group.label}
                   </h2>
                   <span className="font-mono text-xs font-bold text-neutral-600">
                     {group.events.length} {group.events.length === 1 ? 'event' : 'events'}
@@ -181,8 +185,9 @@ export const PastEventsPage: React.FC<PastEventsPageProps> = ({
           <div className="border-[2.5px] border-black bg-white p-12 text-center my-6 shadow-[4px_4px_0px_#000]">
             <h3 className="text-lg font-black text-black">No past events match filters</h3>
             <button
+              type="button"
               onClick={handleReset}
-              className="mt-4 px-4 py-2 bg-black text-white text-xs font-bold"
+              className="mt-4 px-4 py-2 bg-black text-white hover:bg-neutral-800 text-xs font-bold border-2 border-black shadow-[2px_2px_0px_#000] cursor-pointer"
             >
               Reset Filters
             </button>

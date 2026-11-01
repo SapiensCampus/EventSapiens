@@ -19,7 +19,8 @@ import type { EventItem } from '../types/event';
 import {
   formatDateRange,
   getRegistrationStatus,
-  generateGoogleCalendarUrl
+  generateGoogleCalendarUrl,
+  sanitizeExternalUrl
 } from '../lib/event-utils';
 import { copyText } from '../lib/clipboard';
 import { useModalLifecycle } from '../hooks/useModalLifecycle';
@@ -48,9 +49,22 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
 
   const formattedDate = formatDateRange(event.event_date, event.end_date);
   const googleCalUrl = generateGoogleCalendarUrl(event);
+  const safeRegUrl = sanitizeExternalUrl(event.registration_url);
 
   const handleShare = async () => {
     const shareUrl = new URL(`#${event.id}`, window.location.href).toString();
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      try {
+        await navigator.share({
+          title: event.title,
+          text: `Check out ${event.title} on EventSapiens!`,
+          url: shareUrl,
+        });
+        return;
+      } catch {
+        // User cancelled share or failed, proceed to copy fallback
+      }
+    }
     if (await copyText(shareUrl)) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -224,9 +238,9 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
           </div>
 
           <div>
-            {event.registration_url && status !== 'Closed' ? (
+            {safeRegUrl && status !== 'Closed' ? (
               <a
-                href={event.registration_url}
+                href={safeRegUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-5 py-2 text-xs sm:text-sm font-black uppercase text-white bg-black hover:bg-neutral-800 border-[2px] border-black shadow-[2px_2px_0px_#000] cursor-pointer"

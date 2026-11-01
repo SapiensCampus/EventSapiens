@@ -17,7 +17,8 @@
     "validate": "bun scripts/validate-events.ts",
     "archive": "bun scripts/archive-events.ts",
     "archive:dry-run": "bun scripts/archive-events.ts --dry-run",
-    "check": "bun run validate && bun run lint && bun run build"
+    "test": "bun test",
+    "check": "bun run validate && bun test && bun run lint && bun run build"
   },
   "dependencies": {
     "lucide-react": "^0.546.0",

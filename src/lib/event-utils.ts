@@ -22,13 +22,18 @@ function isValidDateString(value: unknown): value is string {
   );
 }
 
-function isHttpUrl(value: string): boolean {
+export function sanitizeExternalUrl(value?: string): string | undefined {
+  if (!value || typeof value !== 'string') return undefined;
   try {
     const url = new URL(value);
-    return url.protocol === 'http:' || url.protocol === 'https:';
+    return url.protocol === 'http:' || url.protocol === 'https:' ? value : undefined;
   } catch {
-    return false;
+    return undefined;
   }
+}
+
+function isHttpUrl(value: string): boolean {
+  return Boolean(sanitizeExternalUrl(value));
 }
 
 export const getEffectiveDateString = (override?: string): string => {
