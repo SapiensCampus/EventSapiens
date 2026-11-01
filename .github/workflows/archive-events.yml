@@ -19,6 +19,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: archive-events
@@ -59,6 +60,8 @@ jobs:
 
       - name: Commit and Push Changes (if not dry run)
         if: ${{ inputs.dry_run != true }}
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -66,6 +69,7 @@ jobs:
             git add events/ src/data/archived.json
             git commit -m "chore(archive): auto-archive concluded events for $(date +'%B %Y')"
             git push
+            gh workflow run deploy-pages.yml --ref main
           else
             echo "No events needed archiving."
           fi
