@@ -472,7 +472,7 @@ export function validateEventData(
 export function generateGoogleCalendarUrl(event: EventItem): string {
   const title = encodeURIComponent(event.title);
   const details = encodeURIComponent(
-    `${event.description}\n\nOrganizer: ${event.organizer}\nRegistration: ${event.registration_url || 'N/A'}\nDiscovered via Eventsapiens (https://codesapiens.in)`
+    `${event.description}\n\nOrganizer: ${event.organizer}\nRegistration: ${event.registration_url || 'N/A'}\nDiscovered via EventSapiens (https://eventsapiens.tech)`
   );
   const location = encodeURIComponent([event.venue, event.city].filter(Boolean).join(', ') || event.mode);
 
