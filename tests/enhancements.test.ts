@@ -48,3 +48,10 @@ describe('getRegistrationStatus', () => {
     expect(getRegistrationStatus('2026-11-02', '2026-11-10', '2026-10-31')).toBe('Closing Soon');
   });
 });
+
+describe('useGitHubContributors', () => {
+  it('exports a hook function', async () => {
+    const { useGitHubContributors } = await import('../src/hooks/useGitHubContributors');
+    expect(typeof useGitHubContributors).toBe('function');
+  });
+});
