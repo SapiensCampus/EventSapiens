@@ -25,24 +25,24 @@ import { Inbox } from 'lucide-react';
 
 export default function App() {
   const [currentView, setCurrentView] = useState<'home' | 'past-events'>('home');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedMode, setSelectedMode] = useState('all');
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [searchQuery, setSearchQuery] = useState(() => {
+    if (typeof window === 'undefined') return '';
+    const params = new URLSearchParams(window.location.search);
+    return params.get('q') || params.get('search') || '';
+  });
+  const [selectedMode, setSelectedMode] = useState(() => {
+    if (typeof window === 'undefined') return 'all';
+    const mode = new URLSearchParams(window.location.search).get('mode');
+    return mode && ['Online', 'Offline', 'Hybrid'].includes(mode) ? mode : 'all';
+  });
+  const [selectedCategory, setSelectedCategory] = useState(() => {
+    if (typeof window === 'undefined') return 'all';
+    return new URLSearchParams(window.location.search).get('category') || 'all';
+  });
 
   const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
   const [isContributeModalOpen, setIsContributeModalOpen] = useState(false);
   const referenceDate = useMemo(() => getEffectiveDateString(), []);
-
-  // Initialize filters from URL query parameters on load
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const q = params.get('q') || params.get('search');
-    const mode = params.get('mode');
-    const cat = params.get('category');
-    if (q) setSearchQuery(q);
-    if (mode && ['Online', 'Offline', 'Hybrid'].includes(mode)) setSelectedMode(mode);
-    if (cat) setSelectedCategory(cat);
-  }, []);
 
   // Synchronize filter updates into URL query parameters
   useEffect(() => {
@@ -56,7 +56,11 @@ export default function App() {
     if (selectedCategory !== 'all') url.searchParams.set('category', selectedCategory);
     else url.searchParams.delete('category');
 
-    window.history.replaceState(null, '', url.toString());
+    const newUrl = url.pathname + url.search + url.hash;
+    const currentUrl = window.location.pathname + window.location.search + window.location.hash;
+    if (newUrl !== currentUrl) {
+      window.history.replaceState(null, '', newUrl);
+    }
   }, [searchQuery, selectedMode, selectedCategory]);
 
   // Load events
@@ -93,25 +97,25 @@ export default function App() {
 
   const handleSelectEvent = (event: EventItem) => {
     setSelectedEvent(event);
-    window.history.replaceState(null, '', `#${event.id}`);
+    const search = window.location.search;
+    window.history.replaceState(null, '', `${search}#${event.id}`);
   };
 
   const handleCloseModal = () => {
     setSelectedEvent(null);
-    window.history.replaceState(
-      null,
-      '',
-      currentView === 'past-events' ? '#past-events' : window.location.pathname
-    );
+    const search = window.location.search;
+    const target = currentView === 'past-events' ? `${search}#past-events` : (search || window.location.pathname);
+    window.history.replaceState(null, '', target);
   };
 
   const handleNavigate = (view: 'home' | 'past-events') => {
     setCurrentView(view);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    const search = window.location.search;
     if (view === 'past-events') {
-      window.history.replaceState(null, '', '#past-events');
+      window.history.replaceState(null, '', `${search}#past-events`);
     } else {
-      window.history.replaceState(null, '', window.location.pathname);
+      window.history.replaceState(null, '', search || window.location.pathname);
     }
   };
 
