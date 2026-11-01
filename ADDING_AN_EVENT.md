@@ -13,7 +13,7 @@ Choose whichever method is easiest for you:
 
 ### Method 1: In-Browser via GitHub (No terminal needed — Recommended)
 
-1. **Fork the Repository:** Click the **Fork** button at the top right of [EventSapiens on GitHub](https://github.com/CodeSapiens-in/EventSapiens).
+1. **Fork the Repository:** Click the **Fork** button at the top right of [EventSapiens on GitHub](https://github.com/SapiensCampus/EventSapiens).
 2. **Navigate to Events:** In your fork, go into the `events/` folder.
 3. **Create a New File:** Click **Add file** → **Create new file**.
 4. **Name Your File:** Use lowercase kebab-case ending with `.toml`:
@@ -173,6 +173,6 @@ venue = "EDII Campus, Chennai"
 ## 🤝 Need Help or Want to Chat?
 
 If you run into any trouble creating your file or opening a PR:
-- Join the **CodeSapiens WhatsApp Community**: [chat.whatsapp.com/IiaPFDThmGk9UEoYzvoXWU](https://chat.whatsapp.com/IiaPFDThmGk9UEoYzvoXWU)
+- Join the **Sapiens Campus WhatsApp Community**: [chat.whatsapp.com/IiaPFDThmGk9UEoYzvoXWU](https://chat.whatsapp.com/IiaPFDThmGk9UEoYzvoXWU)
 - Connect with us on **LinkedIn**: [linkedin.com/company/codesapiens-community](https://www.linkedin.com/company/codesapiens-community/posts/)
-- Open a GitHub Issue: [github.com/CodeSapiens-in/EventSapiens/issues](https://github.com/CodeSapiens-in/EventSapiens/issues)
+- Open a GitHub Issue: [github.com/SapiensCampus/EventSapiens/issues](https://github.com/SapiensCampus/EventSapiens/issues)

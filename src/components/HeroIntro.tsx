@@ -177,7 +177,7 @@ export const HeroIntro: React.FC<HeroIntroProps> = ({
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Find hackathons, workshops, tech fests..."
-                className="w-full pl-2.5 pr-2 py-1.5 text-xs sm:text-sm font-bold text-black placeholder-neutral-400 bg-transparent focus:outline-none"
+                className="w-full pl-2.5 pr-2 py-1.5 text-xs sm:text-sm font-bold text-black placeholder-neutral-400 bg-transparent outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0"
                 aria-label="Search events"
               />
             </div>
@@ -191,7 +191,7 @@ export const HeroIntro: React.FC<HeroIntroProps> = ({
               <select
                 value={selectedCity}
                 onChange={(e) => setSelectedCity(e.target.value)}
-                className="bg-transparent text-xs sm:text-sm font-bold text-black focus:outline-none cursor-pointer py-1 pl-1.5 pr-6 appearance-none"
+                className="bg-transparent text-xs sm:text-sm font-bold text-black outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 cursor-pointer py-1 pl-1.5 pr-6 appearance-none"
                 aria-label="Filter by location"
               >
                 {CITIES.map((c) => (

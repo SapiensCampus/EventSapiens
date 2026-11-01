@@ -44,7 +44,7 @@ export const EventDiscoveryBar: React.FC<EventDiscoveryBarProps> = ({
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Search events, colleges, cities..."
-            className="w-full pl-9 pr-8 py-2.5 bg-white border-[2.5px] border-black shadow-[3px_3px_0px_#000] text-xs sm:text-sm font-bold text-black placeholder-neutral-500 focus:outline-none focus:bg-[#FFFDF5]"
+            className="w-full pl-9 pr-8 py-2.5 bg-white border-[2.5px] border-black shadow-[3px_3px_0px_#000] text-xs sm:text-sm font-bold text-black placeholder-neutral-500 outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 focus:bg-[#FFFDF5]"
           />
           {searchQuery && (
             <button
@@ -63,7 +63,7 @@ export const EventDiscoveryBar: React.FC<EventDiscoveryBarProps> = ({
             aria-label="Filter events by participation mode"
             value={selectedMode}
             onChange={(e) => onModeChange(e.target.value)}
-            className="w-full px-3 py-2.5 bg-white border-[2.5px] border-black shadow-[3px_3px_0px_#000] text-xs font-bold text-black focus:outline-none cursor-pointer"
+            className="w-full px-3 py-2.5 bg-white border-[2.5px] border-black shadow-[3px_3px_0px_#000] text-xs font-bold text-black outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 cursor-pointer"
           >
             <option value="all">All Modes (Online &amp; Offline)</option>
             <option value="Online">Online Events</option>
@@ -77,7 +77,7 @@ export const EventDiscoveryBar: React.FC<EventDiscoveryBarProps> = ({
             aria-label="Filter events by category"
             value={selectedCategory}
             onChange={(e) => onCategoryChange(e.target.value)}
-            className="w-full px-3 py-2.5 bg-white border-[2.5px] border-black shadow-[3px_3px_0px_#000] text-xs font-bold text-black focus:outline-none cursor-pointer"
+            className="w-full px-3 py-2.5 bg-white border-[2.5px] border-black shadow-[3px_3px_0px_#000] text-xs font-bold text-black outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 cursor-pointer"
           >
             <option value="all">All Categories</option>
             {categories.map((cat) => (

@@ -19,6 +19,21 @@ body {
   outline-offset: 3px;
 }
 
+input,
+select,
+textarea {
+  outline: none;
+}
+
+input:focus,
+input:focus-visible,
+select:focus,
+select:focus-visible,
+textarea:focus,
+textarea:focus-visible {
+  outline: none !important;
+}
+
 @keyframes mascot-float {
   0%,
   100% {

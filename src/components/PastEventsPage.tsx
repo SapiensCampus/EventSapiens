@@ -95,7 +95,7 @@ export const PastEventsPage: React.FC<PastEventsPageProps> = ({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search past events by name, college, city..."
-              className="w-full pl-9 pr-8 py-2.5 bg-white border-[2px] border-black shadow-[2px_2px_0px_#000] text-xs sm:text-sm font-bold text-black focus:outline-none"
+              className="w-full pl-9 pr-8 py-2.5 bg-white border-[2px] border-black shadow-[2px_2px_0px_#000] text-xs sm:text-sm font-bold text-black outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0"
             />
             {searchQuery && (
               <button
@@ -114,7 +114,7 @@ export const PastEventsPage: React.FC<PastEventsPageProps> = ({
               aria-label="Filter past events by participation mode"
               value={selectedMode}
               onChange={(e) => setSelectedMode(e.target.value)}
-              className="w-full px-3 py-2.5 bg-white border-[2px] border-black shadow-[2px_2px_0px_#000] text-xs font-bold text-black focus:outline-none cursor-pointer"
+              className="w-full px-3 py-2.5 bg-white border-[2px] border-black shadow-[2px_2px_0px_#000] text-xs font-bold text-black outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 cursor-pointer"
             >
               <option value="all">All Modes</option>
               <option value="Online">Online</option>
@@ -128,7 +128,7 @@ export const PastEventsPage: React.FC<PastEventsPageProps> = ({
               aria-label="Filter past events by category"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="w-full px-3 py-2.5 bg-white border-[2px] border-black shadow-[2px_2px_0px_#000] text-xs font-bold text-black focus:outline-none cursor-pointer"
+              className="w-full px-3 py-2.5 bg-white border-[2px] border-black shadow-[2px_2px_0px_#000] text-xs font-bold text-black outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 cursor-pointer"
             >
               <option value="all">All Categories</option>
               {categories.map((c) => (

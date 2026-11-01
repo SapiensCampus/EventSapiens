@@ -35,7 +35,7 @@ export const ContributeSection: React.FC<ContributeSectionProps> = ({
               </div>
               <h3 className="text-xs font-black uppercase text-black">Fork Repo</h3>
               <p className="mt-1 text-xs text-neutral-600 font-medium">
-                Fork <span className="font-mono font-bold text-black">CodeSapiens-in/EventSapiens</span> repository.
+                Fork <span className="font-mono font-bold text-black">SapiensCampus/EventSapiens</span> repository.
               </p>
             </div>
 
@@ -63,7 +63,7 @@ export const ContributeSection: React.FC<ContributeSectionProps> = ({
           {/* Actions */}
           <div className="flex flex-wrap items-center gap-3">
             <a
-              href="https://github.com/CodeSapiens-in/EventSapiens"
+              href="https://github.com/SapiensCampus/EventSapiens"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-black text-white bg-black hover:bg-neutral-800 border-[2px] border-black shadow-[3px_3px_0px_#000] cursor-pointer transition-all active:translate-x-[1px] active:translate-y-[1px] active:shadow-[2px_2px_0px_#000]"
@@ -81,12 +81,12 @@ export const ContributeSection: React.FC<ContributeSectionProps> = ({
             </button>
 
             <a
-              href="https://github.com/CodeSapiens-in/EventSapiens"
+              href="https://github.com/SapiensCampus/EventSapiens"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-xs font-bold text-black hover:underline ml-auto"
             >
-              <span>CodeSapiens-in/EventSapiens</span>
+              <span>SapiensCampus/EventSapiens</span>
               <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
             </a>
           </div>

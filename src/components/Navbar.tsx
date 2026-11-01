@@ -27,7 +27,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const handleContributeClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    window.open('https://github.com/CodeSapiens-in/EventSapiens', '_blank');
+    window.open('https://github.com/SapiensCampus/EventSapiens', '_blank');
   };
 
   return (

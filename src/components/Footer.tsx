@@ -48,9 +48,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 rel="noopener noreferrer"
                 className="text-white hover:text-[#FFDE59] transition-colors"
               >
-                CodeSapiens TamilNadu
+                Sapiens Campus
               </a>
-              ,
+
             </p>
 
             <p className="text-xs text-neutral-400">
@@ -86,7 +86,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 Past Events
               </button>
               <a
-                href="https://github.com/CodeSapiens-in/EventSapiens"
+                href="https://github.com/SapiensCampus/EventSapiens"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white transition-colors inline-flex items-center gap-1.5"
@@ -99,12 +99,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             {/* Social Media Icons */}
             <div className="flex items-center gap-2 shrink-0">
               <a
-                href="https://www.instagram.com/codesapiens.in/"
+                href="https://www.instagram.com/sapiens_campus/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 bg-[#FFDE59] text-black hover:bg-[#FFE680] flex items-center justify-center transition-colors shadow-[2px_2px_0px_#000]"
-                aria-label="CodeSapiens Instagram"
-                title="CodeSapiens Instagram"
+                aria-label="Sapiens Campus Instagram"
+                title="Sapiens Campus Instagram"
               >
                 <Instagram className="w-4 h-4 stroke-[2.5]" />
               </a>
@@ -114,8 +114,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 bg-[#FFDE59] text-black hover:bg-[#FFE680] flex items-center justify-center transition-colors shadow-[2px_2px_0px_#000]"
-                aria-label="CodeSapiens YouTube"
-                title="CodeSapiens YouTube"
+                aria-label="Sapiens Campus YouTube"
+                title="Sapiens Campus YouTube"
               >
                 <Youtube className="w-4 h-4 stroke-[2.5]" />
               </a>
@@ -125,8 +125,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 bg-[#FFDE59] text-black hover:bg-[#FFE680] flex items-center justify-center transition-colors shadow-[2px_2px_0px_#000]"
-                aria-label="CodeSapiens WhatsApp Community"
-                title="CodeSapiens WhatsApp Community"
+                aria-label="Sapiens Campus WhatsApp Community"
+                title="Sapiens Campus WhatsApp Community"
               >
                 <MessageCircle className="w-4 h-4 stroke-[2.5]" />
               </a>
@@ -136,8 +136,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 bg-[#FFDE59] text-black hover:bg-[#FFE680] flex items-center justify-center transition-colors shadow-[2px_2px_0px_#000]"
-                aria-label="CodeSapiens LinkedIn"
-                title="CodeSapiens LinkedIn"
+                aria-label="Sapiens Campus LinkedIn"
+                title="Sapiens Campus LinkedIn"
               >
                 <Linkedin className="w-4 h-4 stroke-[2.5]" />
               </a>

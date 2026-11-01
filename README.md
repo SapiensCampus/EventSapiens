@@ -3,7 +3,7 @@
 > **Namma ooru student events**  
 > A shared place for students across Tamil Nadu to discover college hackathons, technical symposiums, workshops, and student developer opportunities.
 
-[![Validate Events & Lint](https://img.shields.io/badge/CI-Validate%20Events-amber.svg)](https://github.com/CodeSapiens-in/EventSapiens/actions)
+[![Validate Events & Lint](https://img.shields.io/badge/CI-Validate%20Events-amber.svg)](https://github.com/SapiensCampus/EventSapiens/actions)
 
 ---
 
@@ -28,7 +28,7 @@ We have two distinct contribution paths depending on what you're looking to do:
 - **Past Events Archive:** Historical view grouped chronologically by month and year from `src/data/archived.json`.
 - **Built-in TOML Generator:** Interactive in-app generator helping first-time student contributors create error-free TOML files with 1-click copy or direct GitHub PR links.
 - **Automated Monthly Archiving:** Idempotent CLI script and GitHub Actions cron job that safely transitions completed events into `archived.json`.
-- **Neobrutalist Tactile Styling:** Warm cream background (`#FFF8DC`), yellow accent (`#FFDE59`), solid borders, crisp drop shadows, and zero-pill typographic discipline matching CodeSapiens.
+- **Neobrutalist Tactile Styling:** Warm cream background (`#FFF8DC`), yellow accent (`#FFDE59`), solid borders, crisp drop shadows, and zero-pill typographic discipline matching Sapiens Campus.
 
 ---
 
@@ -98,7 +98,7 @@ eventsapiens/
 
 ```bash
 # Clone the repository
-git clone https://github.com/CodeSapiens-in/EventSapiens.git
+git clone https://github.com/SapiensCampus/EventSapiens.git
 cd EventSapiens
 
 # Install the exact locked dependencies
@@ -128,12 +128,12 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ## 💛 Attribution & Community
 
-- **Brought to you by:** [CodeSapiens TamilNadu](https://codesapiens.in)
+- **Brought to you by:** [Sapiens Campus](https://codesapiens.in)
 - **Inspiration:** [TamilNadu.tech](https://tamilnadu.tech/) — an inspiring open-source initiative uniting tech community meetups across Tamil Nadu.
-- **WhatsApp Community:** [Join CodeSapiens Chat](https://chat.whatsapp.com/IiaPFDThmGk9UEoYzvoXWU)
-- **LinkedIn:** [CodeSapiens Community](https://www.linkedin.com/company/codesapiens-community/posts/)
+- **WhatsApp Community:** [Join Sapiens Campus Chat](https://chat.whatsapp.com/IiaPFDThmGk9UEoYzvoXWU)
+- **LinkedIn:** [Sapiens Campus Community](https://www.linkedin.com/company/codesapiens-community/posts/)
 - **YouTube:** [@codesapiens-in](https://youtube.com/@codesapiens-in?si=90EaPMYHcSZIHtMi)
-- **Instagram:** [@codesapiens.in](https://www.instagram.com/codesapiens.in/)
+- **Instagram:** [@sapiens_campus](https://www.instagram.com/sapiens_campus/)
 
 ---
 

@@ -394,7 +394,7 @@ export const ContributeModal: React.FC<ContributeModalProps> = ({ isOpen, onClos
               <a
                 href={
                   validation.valid
-                    ? `https://github.com/CodeSapiens-in/EventSapiens/new/main?filename=events/${filename}&value=${encodeURIComponent(
+                    ? `https://github.com/SapiensCampus/EventSapiens/new/main?filename=events/${filename}&value=${encodeURIComponent(
                         tomlOutput
                       )}`
                     : undefined

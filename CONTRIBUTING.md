@@ -166,10 +166,10 @@ The app will start at `http://localhost:5173`. Hot module reloading will automat
 
 ## 💛 Community & Support
 
-EventSapiens is an open-source initiative brought to you by **CodeSapiens TamilNadu**, initiated by **Kee** ([Keerthana](https://www.linkedin.com/in/keerthana-m-g-12ba59256/)) and **JK** ([Jayakanth](https://www.linkedin.com/in/jayakanth-sivakumar-434851257/)).
+EventSapiens is an open-source initiative brought to you by **Sapiens Campus**, initiated by **Kee** ([Keerthana](https://www.linkedin.com/in/keerthana-m-g-12ba59256/)) and **JK** ([Jayakanth](https://www.linkedin.com/in/jayakanth-sivakumar-434851257/)).
 
 - **WhatsApp:** [Join our community chat](https://chat.whatsapp.com/IiaPFDThmGk9UEoYzvoXWU)
-- **LinkedIn:** [CodeSapiens Community](https://www.linkedin.com/company/codesapiens-community/posts/)
+- **LinkedIn:** [Sapiens Campus Community](https://www.linkedin.com/company/codesapiens-community/posts/)
 - **YouTube:** [@codesapiens-in](https://youtube.com/@codesapiens-in?si=90EaPMYHcSZIHtMi)
-- **Instagram:** [@codesapiens.in](https://www.instagram.com/codesapiens.in/)
+- **Instagram:** [@sapiens_campus](https://www.instagram.com/sapiens_campus/)
 - **Inspiration:** [tamilnadu.tech](https://tamilnadu.tech)
