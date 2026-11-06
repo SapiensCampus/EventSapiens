@@ -36,8 +36,17 @@ export const EventCard: React.FC<EventCardProps> = ({
 
   return (
     <article
+      role="button"
+      tabIndex={0}
+      aria-label={`View details for ${event.title}`}
       onClick={() => onSelectEvent(event)}
-      className="group bg-white border-[2.5px] border-black shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all cursor-pointer flex flex-col justify-between overflow-hidden"
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onSelectEvent(event);
+        }
+      }}
+      className="group bg-white border-[2.5px] border-black shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] focus:outline-none focus-visible:ring-2 focus-visible:ring-black transition-all cursor-pointer flex flex-col justify-between overflow-hidden"
     >
       <div className="bg-[#FFF8DC] border-b-[2px] border-black px-4 py-2.5 flex items-center justify-between gap-2">
         <div className="border-[2px] border-black bg-[#FFDE59] px-2 py-0.5 text-[11px] font-mono font-black uppercase tracking-wider text-black shadow-[1.5px_1.5px_0px_#000]">

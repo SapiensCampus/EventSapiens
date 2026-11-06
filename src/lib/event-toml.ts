@@ -40,5 +40,16 @@ export function serializeEventToToml(event: RawEventToml): string {
       : undefined
   ];
 
-  return output.filter((value): value is string => Boolean(value)).join('\n');
+  if (event.stages?.length) {
+    for (const stage of event.stages) {
+      output.push('');
+      output.push('[[stages]]');
+      output.push(line('name', stage.name));
+      output.push(line('date', stage.date));
+      if (stage.mode) output.push(line('mode', stage.mode));
+      if (stage.venue) output.push(line('venue', stage.venue));
+    }
+  }
+
+  return output.filter((value): value is string => value !== undefined).join('\n');
 }
