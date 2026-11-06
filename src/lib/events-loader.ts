@@ -38,7 +38,7 @@ export function loadActiveEvents(): EventItem[] {
         continue;
       }
 
-      // Expired events whose registration deadline has passed are excluded from active listings
+      // Automatically exclude events whose registration deadline or event date has passed
       if (isArchivedEligible(parsed)) {
         continue;
       }
@@ -76,14 +76,17 @@ export function loadArchivedEvents(): EventItem[] {
     return [{ ...item, tags: Array.isArray(item.tags) ? item.tags : [] }];
   });
 
-  // Include any expired events from /events/ not yet written to archived.json
+  const existingIds = new Set(list.map((e) => e.id));
+
+  // Include any expired events from /events/ whose deadline has passed
   for (const [path, module] of Object.entries(tomlFiles)) {
     const filename = path.split('/').pop() || '';
     if (filename.startsWith('_')) continue;
+
     try {
       const parsed = parse(module.default) as unknown as RawEventToml;
       const slug = filename.replace(/\.toml$/, '');
-      if (isArchivedEligible(parsed) && !list.some((e) => e.id === slug)) {
+      if (isArchivedEligible(parsed) && !existingIds.has(slug)) {
         list.push({
           ...parsed,
           id: slug,

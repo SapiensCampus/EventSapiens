@@ -43,7 +43,7 @@ export const getEffectiveDateString = (override?: string): string => {
     }
     return override;
   }
-  const tz = (typeof Intl !== 'undefined' ? Intl.DateTimeFormat().resolvedOptions().timeZone : 'UTC') || 'UTC';
+  const tz = (typeof Intl !== 'undefined' ? (Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Kolkata') : 'Asia/Kolkata');
   try {
     return new Intl.DateTimeFormat('en-CA', { timeZone: tz }).format(new Date());
   } catch {
@@ -91,16 +91,16 @@ export function getRegistrationStatus(
 }
 
 /**
- * Checks whether an event has concluded and is eligible for archiving.
- * Uses end_date if provided, otherwise event_date.
+ * Checks whether an event has concluded or registration has closed and is eligible for archiving.
+ * Checks registration_deadline first; falls back to end_date or event_date.
  */
 export function isArchivedEligible(
   event: { event_date: string; end_date?: string; registration_deadline?: string },
   refDateStr?: string
 ): boolean {
   const todayStr = getEffectiveDateString(refDateStr);
-  const compareDate = event.registration_deadline || event.event_date;
-  return compareDate < todayStr;
+  const cutoffDate = event.registration_deadline || event.end_date || event.event_date;
+  return cutoffDate < todayStr;
 }
 
 const MONTH_NAMES = [

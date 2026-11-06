@@ -97,7 +97,7 @@ export function runArchiver(dryRun = isDryRun, customDate = referenceDateStr): A
         continue;
       }
 
-      // Check if event is eligible for archiving (end_date or event_date < reference date)
+      // Check if event is eligible for archiving (registration deadline or conclusion date passed)
       if (isArchivedEligible(parsed, customDate)) {
         const signature = `${parsed.title.toLowerCase()}::${parsed.organizer.toLowerCase()}::${parsed.event_date}`;
 
@@ -107,7 +107,7 @@ export function runArchiver(dryRun = isDryRun, customDate = referenceDateStr): A
           // Even if duplicate in archive, delete active TOML to clear completed event
           filesToDelete.push(filePath);
         } else {
-          console.log(`[Archive Target] ${slug} (concluded on ${parsed.registration_deadline || parsed.event_date})`);
+          console.log(`[Archive Target] ${slug} (concluded on ${parsed.registration_deadline || parsed.end_date || parsed.event_date})`);
           newlyArchived.push({
             ...parsed,
             id: slug,
