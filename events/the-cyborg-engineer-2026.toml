@@ -1,0 +1,50 @@
+title = "The Cyborg Engineer: Amplified by AI, Becoming a One-Person Software Company"
+description = """
+About the Session:
+What happens when an experienced developer stops working in silos and begins orchestrating a fleet of autonomous AI agents across product discovery, UI design, coding, testing, deployment, and live operations?
+
+In this session, we explore the transition from traditional software development to operating as a self-sufficient, one-person software company. Drawing from 18 years in software engineering and startup experience, this talk deconstructs how to combine coding assistants, reusable agent skills, rich project context, and tight feedback loops across every stage of the software lifecycle.
+
+You will see the inner workings of an ecosystem supported by around 30 OpenClaw agents handling research, recurring execution, and strategic recommendations—with the engineer acting as the pilot setting priorities, guiding core architecture, and evaluating outputs.
+
+What We’ll Cover:
+- Real-World Product Walkthroughs: From scoping a functional MVP and iterating UI interfaces to running automated tests, containerizing workloads, deploying to a VPS, and monitoring production.
+- Evolution of Infrastructure: How a lean setup—originally an application, database, and message queue sharing a single EC2 instance—can be expanded with AI agents to adopt open-source tools and clear long-standing backlog tasks.
+- The "Cyborg" Operating Model: Practical workflows for coordinating dozens of autonomous agents while keeping human judgment and engineering accountability firmly in the driver's seat.
+
+Key Takeaways:
+- A concrete operating framework to run end-to-end software delivery as an individual engineer.
+- Techniques for identifying high-leverage problems worth solving with AI assistance.
+- Actionable methods to transform years of engineering experience into independent, scalable products and services.
+
+Who Should Attend:
+- Senior engineers, tech leads, and full-stack developers curious about the future of AI-augmented software delivery.
+- Solopreneurs, indie hackers, and technical founders looking to build, deploy, and maintain robust products with zero headcount.
+- Engineering managers and architects interested in autonomous multi-agent coordination patterns."""
+organizer = "Tamil Nadu Java User Group"
+category = "Meetup"
+mode = "Online"
+
+# Date format: YYYY-MM-DD
+event_date = "2026-11-11"
+end_date = "2026-11-11"
+
+# Registration details
+registration_deadline = "2026-11-11"
+registration_url = "https://luma.com/w3b4aca3"
+fee = "Free"
+
+# Search tags & metadata
+tags = [
+  "Tamil Nadu Java User Group",
+  "Artificial Intelligence",
+  "AI Agents",
+  "Autonomous Agents",
+  "Software Engineering",
+  "Full-Stack Development",
+  "System Architecture",
+  "DevOps",
+  "Virtual Event",
+  "Online Meetup"
+]
+website = "https://luma.com/w3b4aca3"
