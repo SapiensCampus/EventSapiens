@@ -91,6 +91,30 @@ export function getRegistrationStatus(
 }
 
 /**
+ * Returns whole days from today until the deadline (0 = today, negative = passed),
+ * or undefined when no deadline is given.
+ */
+export function getDaysUntilDeadline(
+  deadline?: string,
+  refDateStr?: string
+): number | undefined {
+  if (!deadline) return undefined;
+  const todayStr = getEffectiveDateString(refDateStr);
+  const today = new Date(todayStr + 'T00:00:00Z').getTime();
+  const dead = new Date(deadline + 'T00:00:00Z').getTime();
+  return Math.round((dead - today) / MILLISECONDS_PER_DAY);
+}
+
+/** Human-friendly countdown, e.g. "Closes today", "3 days left", "Closed". */
+export function formatDeadlineCountdown(days?: number): string {
+  if (days === undefined) return '';
+  if (days < 0) return 'Closed';
+  if (days === 0) return 'Closes today';
+  if (days === 1) return '1 day left';
+  return `${days} days left`;
+}
+
+/**
  * Checks whether an event has concluded or registration has closed and is eligible for archiving.
  * Checks registration_deadline first; falls back to end_date or event_date.
  */

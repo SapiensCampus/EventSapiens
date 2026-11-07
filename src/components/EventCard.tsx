@@ -4,14 +4,27 @@
  */
 
 import React from 'react';
-import { ExternalLink, Layers, MapPin } from 'lucide-react';
+import { CalendarDays, Clock, ExternalLink, Layers, MapPin, Monitor } from 'lucide-react';
 import type { EventItem } from '../types/event';
-import { getRegistrationStatus, sanitizeExternalUrl } from '../lib/event-utils';
+import {
+  formatDeadlineCountdown,
+  getDaysUntilDeadline,
+  getRegistrationStatus,
+  sanitizeExternalUrl
+} from '../lib/event-utils';
 
 interface EventCardProps {
   event: EventItem;
   onSelectEvent: (event: EventItem) => void;
   referenceDateStr?: string;
+}
+
+const MONTH_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+/** Formats YYYY-MM-DD as "09 Nov, 2026". */
+function formatCardDate(dateStr: string): string {
+  const [y, m, d] = dateStr.split('-');
+  return `${d} ${MONTH_SHORT[Number(m) - 1] ?? m}, ${y}`;
 }
 
 export const EventCard: React.FC<EventCardProps> = ({
@@ -25,6 +38,15 @@ export const EventCard: React.FC<EventCardProps> = ({
     referenceDateStr
   );
   const safeRegUrl = sanitizeExternalUrl(event.registration_url);
+  const daysLeft = getDaysUntilDeadline(event.registration_deadline, referenceDateStr);
+
+  // Registration box tone: red when closing soon, yellow when open, grey when closed
+  const deadlineTone =
+    status === 'Closed'
+      ? 'bg-neutral-100 border-neutral-400 text-neutral-700'
+      : status === 'Closing Soon'
+      ? 'bg-[#FEE2E2] border-[#F87171] text-[#991B1B]'
+      : 'bg-[#FEF9C3] border-[#FACC15] text-[#854D0E]';
 
   // Month tag color
   const monthName = new Date(event.event_date + 'T00:00:00Z').toLocaleString('en-US', {
@@ -33,6 +55,15 @@ export const EventCard: React.FC<EventCardProps> = ({
   }).toUpperCase();
 
   const yearNum = event.event_date.split('-')[0];
+
+  const venue = event.venue?.trim();
+  const city = event.city?.trim();
+  const location =
+    venue && city && !venue.toLowerCase().includes(city.toLowerCase())
+      ? `${venue}, ${city}`
+      : venue || city;
+
+  const ModeIcon = event.mode === 'Online' ? Monitor : MapPin;
 
   return (
     <article
@@ -54,14 +85,15 @@ export const EventCard: React.FC<EventCardProps> = ({
         </div>
 
         <span
-          className={`border-[1.5px] border-black px-2 py-0.5 text-[11px] font-bold uppercase ${
+          className={`inline-flex items-center gap-1 border-[1.5px] border-black px-2 py-0.5 text-[11px] font-bold uppercase text-black ${
             event.mode === 'Online'
-              ? 'bg-[#BAE6FD] text-black'
+              ? 'bg-[#BAE6FD]'
               : event.mode === 'Offline'
-              ? 'bg-[#BBF7D0] text-black'
-              : 'bg-[#FED7AA] text-black'
+              ? 'bg-[#BBF7D0]'
+              : 'bg-[#FED7AA]'
           }`}
         >
+          <ModeIcon className="w-3 h-3 stroke-[2.5]" aria-hidden="true" />
           {event.mode}
         </span>
       </div>
@@ -81,37 +113,63 @@ export const EventCard: React.FC<EventCardProps> = ({
           </p>
         </div>
 
-        <div className="mt-4 pt-3 border-t-[1.5px] border-black/15 flex flex-wrap items-center gap-1.5 text-xs font-bold">
-          {event.city && (
-            <span className="bg-[#DCFCE7] border border-black/40 px-2 py-0.5 text-[11px] text-black font-bold">
-              {event.city}
-            </span>
-          )}
+        {/* Event date vs. registration deadline, shown side by side */}
+        <div className="mt-4 grid grid-cols-2 gap-2">
+          <div className="bg-[#DBEAFE] border border-[#93C5FD] rounded-md px-2.5 py-2 text-[#1E3A8A]">
+            <div className="flex items-center gap-1 text-[11px] font-semibold">
+              <CalendarDays className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+              <span>Event Date</span>
+            </div>
+            <time dateTime={event.event_date} className="mt-1 block text-sm font-black text-black">
+              {formatCardDate(event.event_date)}
+            </time>
+          </div>
 
-          <span className="bg-[#DBEAFE] border border-black/40 px-2 py-0.5 text-[11px] font-mono text-black">
-            {event.event_date}
-          </span>
-
-          {event.fee && (
-            <span className="bg-[#FEF08A] border border-black/40 px-2 py-0.5 text-[11px] text-black font-bold">
-              {event.fee}
-            </span>
-          )}
-
-          {event.stages && event.stages.length > 0 && (
-            <span className="bg-[#FED7AA] border border-black/40 px-2 py-0.5 text-[11px] text-black font-bold flex items-center gap-1">
-              <Layers className="w-3 h-3 stroke-[2.5]" />
-              <span>{event.stages.length} Stages</span>
-            </span>
+          {event.registration_deadline && (
+            <div className={`border rounded-md px-2.5 py-2 ${deadlineTone}`}>
+              <div className="flex items-center gap-1 text-[11px] font-semibold">
+                <Clock className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                <span>{status === 'Closed' ? 'Registration Closed' : 'Registration Closes'}</span>
+              </div>
+              <div className="mt-1 flex flex-wrap items-center gap-1">
+                <time dateTime={event.registration_deadline} className="text-sm font-black">
+                  {formatCardDate(event.registration_deadline)}
+                </time>
+                {status !== 'Closed' && (
+                  <span className="inline-flex items-center gap-0.5 rounded-full bg-[#FEF08A] border border-[#EAB308] px-1.5 py-px text-[10px] font-bold text-[#854D0E] whitespace-nowrap">
+                    <Clock className="w-2.5 h-2.5" aria-hidden="true" />
+                    {formatDeadlineCountdown(daysLeft)}
+                  </span>
+                )}
+              </div>
+            </div>
           )}
         </div>
 
-        {event.venue && (
-          <div className="mt-2.5 flex items-start gap-1.5 text-xs text-neutral-600 font-medium truncate">
-            <MapPin className="w-3.5 h-3.5 text-black shrink-0 mt-0.5" />
-            <span className="truncate">{event.venue}</span>
+        <div className="mt-3 flex items-center justify-between gap-2 text-xs">
+          {location ? (
+            <div className="flex items-start gap-1.5 text-neutral-600 font-medium min-w-0">
+              <MapPin className="w-3.5 h-3.5 text-black shrink-0 mt-0.5" aria-hidden="true" />
+              <span className="truncate">{location}</span>
+            </div>
+          ) : (
+            <span />
+          )}
+
+          <div className="flex items-center gap-1.5 shrink-0">
+            {event.stages && event.stages.length > 0 && (
+              <span className="bg-[#FED7AA] border border-black/40 px-2 py-0.5 text-[11px] text-black font-bold flex items-center gap-1">
+                <Layers className="w-3 h-3 stroke-[2.5]" aria-hidden="true" />
+                <span>{event.stages.length} Stages</span>
+              </span>
+            )}
+            {event.fee && (
+              <span className="bg-[#FEF08A] border border-black/40 px-2 py-0.5 text-[11px] text-black font-bold whitespace-nowrap">
+                {event.fee}
+              </span>
+            )}
           </div>
-        )}
+        </div>
       </div>
 
       <div className="bg-[#FAF8F5] border-t-[2px] border-black px-4 py-3 flex items-center justify-between gap-2">
