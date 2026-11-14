@@ -284,7 +284,7 @@ export function filterEvents(
   statusFilter: string,
   refDateStr?: string
 ): EventItem[] {
-  const q = query.trim().toLowerCase();
+  const terms = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
 
   return events.filter((ev) => {
     // Mode filter
@@ -313,24 +313,20 @@ export function filterEvents(
       }
     }
 
-    // Text query
-    if (q) {
-      const title = (ev.title || '').toLowerCase();
-      const org = (ev.organizer || '').toLowerCase();
-      const desc = (ev.description || '').toLowerCase();
-      const city = (ev.city || '').toLowerCase();
-      const venue = (ev.venue || '').toLowerCase();
-      const cat = (ev.category || '').toLowerCase();
-      const tags = (ev.tags || []).map((t) => t.toLowerCase()).join(' ');
+    // Text query: every word must appear in at least one field,
+    // so "Hackathon Chennai" can match a title and a city together.
+    if (terms.length > 0) {
+      const fields = [
+        ev.title,
+        ev.organizer,
+        ev.description,
+        ev.city,
+        ev.venue,
+        ev.category,
+        ...(ev.tags || [])
+      ].map((value) => (value || '').toLowerCase());
 
-      const matches =
-        title.includes(q) ||
-        org.includes(q) ||
-        desc.includes(q) ||
-        city.includes(q) ||
-        venue.includes(q) ||
-        cat.includes(q) ||
-        tags.includes(q);
+      const matches = terms.every((term) => fields.some((field) => field.includes(term)));
 
       if (!matches) return false;
     }

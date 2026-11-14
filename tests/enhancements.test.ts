@@ -4,7 +4,8 @@
  */
 
 import { describe, expect, it } from 'bun:test';
-import { sanitizeExternalUrl, getRegistrationStatus, formatDateRange } from '../src/lib/event-utils';
+import { sanitizeExternalUrl, getRegistrationStatus, formatDateRange, filterEvents } from '../src/lib/event-utils';
+import type { EventItem } from '../src/types/event';
 
 describe('sanitizeExternalUrl', () => {
   it('allows valid HTTPS URLs', () => {
@@ -46,5 +47,28 @@ describe('getRegistrationStatus', () => {
 
   it('correctly marks deadline within 3 days as Closing Soon', () => {
     expect(getRegistrationStatus('2026-11-02', '2026-11-10', '2026-10-31')).toBe('Closing Soon');
+  });
+});
+
+describe('filterEvents', () => {
+  const events = [
+    { id: 'crimeathon', title: 'CRIMEATHON 2026', organizer: 'SIMATS', description: 'Cyber hackathon', city: 'Chennai', category: 'Hackathon', mode: 'Offline', event_date: '2026-11-20' },
+    { id: 'hacksprint', title: 'HackSprint 3.0', organizer: 'KPR', description: 'Build bold', city: 'Coimbatore', category: 'Hackathon', mode: 'Offline', event_date: '2026-11-25' }
+  ] as EventItem[];
+  const search = (query: string) =>
+    filterEvents(events, query, 'all', 'all', 'all', '2026-11-15').map((ev) => ev.id);
+
+  it('matches a single word in any field', () => {
+    expect(search('hackathon')).toEqual(['crimeathon', 'hacksprint']);
+    expect(search('chennai')).toEqual(['crimeathon']);
+  });
+
+  it('matches multi-word queries spread across different fields', () => {
+    expect(search('Hackathon Chennai')).toEqual(['crimeathon']);
+    expect(search('CRIMEATHON 2026 Chennai')).toEqual(['crimeathon']);
+  });
+
+  it('requires every word to match', () => {
+    expect(search('CRIMEATHON Coimbatore')).toEqual([]);
   });
 });
