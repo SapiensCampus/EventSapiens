@@ -1,0 +1,29 @@
+title = "CLASS 102 - THE UNWRITTEN MANUAL"
+description = "Class 101 is done, but the plot hasn't. College has a syllabus — navigating it does not. Class 102 brings conversations with people who've been there, insights to find your direction, interactive activities, a mentorship programme launch, and a chance to connect with the Sapiens Campus community. Half-day. Plenty to take away."
+organizer = "Sapiens Campus"
+category = "Meetup"
+mode = "Offline"
+
+# Date format: YYYY-MM-DD
+event_date = "2026-11-29"
+
+# Registration details
+registration_url = "https://luma.com/oai0ysy0"
+fee = "Free"
+
+# Location (required if Offline or Hybrid)
+city = "Chennai"
+venue = "EmpowerED Careers, Sai Pride, Guindy"
+
+# Search tags & metadata
+tags = [
+  "Sapiens Campus",
+  "College Life",
+  "Mentorship",
+  "Students",
+  "Networking",
+  "Chennai",
+  "Meetup"
+]
+website = "https://luma.com/oai0ysy0"
+logo_url = "https://podu.pics/Eu_aWpPMNh"
