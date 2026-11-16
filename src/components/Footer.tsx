@@ -43,7 +43,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <p className="text-xs sm:text-sm text-neutral-300">
               Brought to you by{" "}
               <a
-                href="https://codesapiens.in"
+                href="https://sapienscampus.in/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-[#FFDE59] transition-colors"
