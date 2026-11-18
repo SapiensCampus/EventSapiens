@@ -9,6 +9,19 @@ const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 const EVENT_MODES = ['Online', 'Offline', 'Hybrid'] as const;
 const MILLISECONDS_PER_DAY = 86_400_000;
 
+// Bound contributor-supplied content so a single event file cannot bloat the bundle.
+const MAX_TITLE_LENGTH = 120;
+const MAX_DESCRIPTION_LENGTH = 4000;
+const MAX_ORGANIZER_LENGTH = 120;
+const MAX_CATEGORY_LENGTH = 60;
+const MAX_CITY_LENGTH = 100;
+const MAX_VENUE_LENGTH = 160;
+const MAX_FEE_LENGTH = 80;
+const MAX_CONTACT_EMAIL_LENGTH = 254;
+const MAX_TAG_LENGTH = 40;
+const MAX_TAGS = 24;
+const MAX_STAGES = 20;
+
 function isValidDateString(value: unknown): value is string {
   if (typeof value !== 'string' || !DATE_PATTERN.test(value)) return false;
 
@@ -24,12 +37,19 @@ function isValidDateString(value: unknown): value is string {
 
 export function sanitizeExternalUrl(value?: string): string | undefined {
   if (!value || typeof value !== 'string') return undefined;
+  if (/[\u0000-\u001F\u007F]/.test(value)) return undefined;
   try {
     const url = new URL(value);
-    return url.protocol === 'http:' || url.protocol === 'https:' ? value : undefined;
+    if (url.protocol !== 'http:' && url.protocol !== 'https:') return undefined;
+    if (!url.hostname || url.username || url.password) return undefined;
+    return value;
   } catch {
     return undefined;
   }
+}
+
+function isWithinLength(value: unknown, max: number): boolean {
+  return typeof value !== 'string' || value.length <= max;
 }
 
 function isHttpUrl(value: string): boolean {
@@ -373,6 +393,20 @@ export function validateEventData(
     errors.push('Missing or empty required field: "category"');
   }
 
+  // Reject oversized content so one submission cannot bloat the client bundle.
+  if (!isWithinLength(ev.title, MAX_TITLE_LENGTH)) {
+    errors.push(`Field "title" must be at most ${MAX_TITLE_LENGTH} characters`);
+  }
+  if (!isWithinLength(ev.description, MAX_DESCRIPTION_LENGTH)) {
+    errors.push(`Field "description" must be at most ${MAX_DESCRIPTION_LENGTH} characters`);
+  }
+  if (!isWithinLength(ev.organizer, MAX_ORGANIZER_LENGTH)) {
+    errors.push(`Field "organizer" must be at most ${MAX_ORGANIZER_LENGTH} characters`);
+  }
+  if (!isWithinLength(ev.category, MAX_CATEGORY_LENGTH)) {
+    errors.push(`Field "category" must be at most ${MAX_CATEGORY_LENGTH} characters`);
+  }
+
   if (
     !ev.mode ||
     typeof ev.mode !== 'string' ||
@@ -414,15 +448,18 @@ export function validateEventData(
     );
   }
 
-  const optionalStringFields = [
-    'city',
-    'venue',
-    'fee',
-    'contact_email'
-  ] as const;
-  for (const field of optionalStringFields) {
-    if (ev[field] !== undefined && typeof ev[field] !== 'string') {
+  const optionalStringFields = {
+    city: MAX_CITY_LENGTH,
+    venue: MAX_VENUE_LENGTH,
+    fee: MAX_FEE_LENGTH,
+    contact_email: MAX_CONTACT_EMAIL_LENGTH
+  } as const;
+  for (const [field, maxLength] of Object.entries(optionalStringFields)) {
+    const value = ev[field];
+    if (value !== undefined && typeof value !== 'string') {
       errors.push(`Optional field "${field}" must be a string`);
+    } else if (!isWithinLength(value, maxLength)) {
+      errors.push(`Optional field "${field}" must be at most ${maxLength} characters`);
     }
   }
 
@@ -437,6 +474,13 @@ export function validateEventData(
   if (ev.tags !== undefined) {
     if (!Array.isArray(ev.tags) || ev.tags.some((tag) => typeof tag !== 'string')) {
       errors.push('Optional field "tags" must be an array of strings');
+    } else {
+      if (ev.tags.length > MAX_TAGS) {
+        errors.push(`Optional field "tags" must contain at most ${MAX_TAGS} entries`);
+      }
+      if (ev.tags.some((tag) => typeof tag === 'string' && tag.length > MAX_TAG_LENGTH)) {
+        errors.push(`Each tag must be at most ${MAX_TAG_LENGTH} characters`);
+      }
     }
   }
 
@@ -444,6 +488,9 @@ export function validateEventData(
     if (!Array.isArray(ev.stages)) {
       errors.push('Optional field "stages" must be an array');
     } else {
+      if (ev.stages.length > MAX_STAGES) {
+        errors.push(`Optional field "stages" must contain at most ${MAX_STAGES} entries`);
+      }
       ev.stages.forEach((stage, index) => {
         if (!stage || typeof stage !== 'object') {
           errors.push(`Stage ${index + 1} must be an object`);
@@ -453,6 +500,8 @@ export function validateEventData(
         const value = stage as Record<string, unknown>;
         if (typeof value.name !== 'string' || !value.name.trim()) {
           errors.push(`Stage ${index + 1} must have a non-empty "name"`);
+        } else if (!isWithinLength(value.name, MAX_TITLE_LENGTH)) {
+          errors.push(`Stage ${index + 1} "name" must be at most ${MAX_TITLE_LENGTH} characters`);
         }
         if (!isValidDateString(value.date)) {
           errors.push(`Stage ${index + 1} must have a valid "date" in YYYY-MM-DD format`);
@@ -466,6 +515,8 @@ export function validateEventData(
         }
         if (value.venue !== undefined && typeof value.venue !== 'string') {
           errors.push(`Stage ${index + 1} field "venue" must be a string`);
+        } else if (value.venue !== undefined && !isWithinLength(value.venue, MAX_VENUE_LENGTH)) {
+          errors.push(`Stage ${index + 1} field "venue" must be at most ${MAX_VENUE_LENGTH} characters`);
         }
       });
     }

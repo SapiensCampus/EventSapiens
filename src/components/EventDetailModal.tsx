@@ -230,6 +230,7 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
               href={googleCalUrl}
               target="_blank"
               rel="noopener noreferrer"
+              referrerPolicy="no-referrer"
               className="inline-flex items-center gap-1 px-3 py-2 text-xs font-bold text-black bg-[#FFDE59] hover:bg-[#FFE680] border-[1.5px] border-black cursor-pointer shadow-[1.5px_1.5px_0px_#000]"
             >
               <Calendar className="w-3.5 h-3.5 stroke-[2.5]" />
@@ -243,6 +244,7 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
                 href={safeRegUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                referrerPolicy="no-referrer"
                 className="inline-flex items-center gap-1.5 px-5 py-2 text-xs sm:text-sm font-black uppercase text-white bg-black hover:bg-neutral-800 border-[2px] border-black shadow-[2px_2px_0px_#000] cursor-pointer"
               >
                 <span>Register Now</span>

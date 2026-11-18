@@ -190,6 +190,7 @@ export const EventCard: React.FC<EventCardProps> = ({
             href={safeRegUrl}
             target="_blank"
             rel="noopener noreferrer"
+            referrerPolicy="no-referrer"
             onClick={(e) => e.stopPropagation()}
             className="inline-flex items-center gap-1 px-3 py-1 bg-black text-white text-xs font-bold border border-black hover:bg-neutral-800 transition-colors shadow-[1.5px_1.5px_0px_#000]"
           >

@@ -20,15 +20,25 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Dependency review
+        # Requires the repository dependency graph to be enabled (default for public repos).
+        uses: actions/dependency-review-action@2031cfc080254a8a887f58cffee85186f0e49e48 # v4.9.0
 
       - name: Set up Bun
-        uses: oven-sh/setup-bun@v2
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
         with:
           bun-version: 1.4.4
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
+
+      - name: Audit dependencies
+        # GHSA-fc5q-39xc-vjpf (picomatch ReDoS) is a build-time-only transitive dev
+        # dependency of Vite; no patched version is published yet (latest 4.0.7).
+        # Remove the --ignore flag once an upstream fix is available.
+        run: bun audit --ignore GHSA-fc5q-39xc-vjpf
 
       - name: Run quality checks
         run: bun run check
