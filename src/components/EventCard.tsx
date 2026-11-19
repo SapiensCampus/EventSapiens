@@ -115,7 +115,7 @@ export const EventCard: React.FC<EventCardProps> = ({
 
         {/* Event date vs. registration deadline, shown side by side */}
         <div className={`mt-4 grid gap-2.5 ${event.registration_deadline ? 'grid-cols-2' : 'grid-cols-1'}`}>
-          <div className="bg-[#BAE6FD] border-[2px] border-black shadow-[2px_2px_0px_#000] px-2.5 py-2 text-black">
+          <div className="bg-[#ddebcb] border-[2px] border-black shadow-[2px_2px_0px_#000] px-2.5 py-2 text-black">
             <div className="flex items-center gap-1.5 text-[10px] font-mono font-black uppercase tracking-wider text-black">
               <CalendarDays className="w-3.5 h-3.5 stroke-[2.5] shrink-0 text-black" aria-hidden="true" />
               <span>Event Date</span>
