@@ -10,6 +10,8 @@ registration_url = "https://eventopia.in/event/hacksprint-30-2027-01-29-6u5"
 website = "https://eventopia.in/event/hacksprint-30-2027-01-29-6u5"
 city = "Coimbatore"
 venue = "Karpagam Academy of Higher Education, Coimbatore, Tamil Nadu"
+latitude = 10.9027
+longitude = 76.9934
 fee = "Free"
 tags = [
   "Hackathon",

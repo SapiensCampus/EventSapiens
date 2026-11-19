@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, lazy, Suspense } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroIntro } from './components/HeroIntro';
 import { EventDiscoveryBar } from './components/EventDiscoveryBar';
@@ -21,7 +21,10 @@ import {
   groupEventsIntoThisMonthAndUpcoming
 } from './lib/event-utils';
 import type { EventItem } from './types/event';
-import { Inbox } from 'lucide-react';
+import { Inbox, List, Map as MapIcon } from 'lucide-react';
+
+// Lazy-load MapLibre GL (~300 kB gzipped) so it doesn't block initial paint
+const EventMap = lazy(() => import('./components/EventMap').then(m => ({ default: m.EventMap })));
 
 export default function App() {
   const [currentView, setCurrentView] = useState<'home' | 'past-events'>('home');
@@ -42,6 +45,7 @@ export default function App() {
 
   const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
   const [isContributeModalOpen, setIsContributeModalOpen] = useState(false);
+  const [eventsViewMode, setEventsViewMode] = useState<'list' | 'map'>('list');
   const referenceDate = useMemo(() => getEffectiveDateString(), []);
 
   // Synchronize filter updates into URL query parameters
@@ -195,10 +199,28 @@ export default function App() {
             />
 
             <section id="events-section" className="max-w-7xl mx-auto px-4 sm:px-8 pb-16 pt-8">
-              <div className="mb-6">
+              <div className="mb-6 flex items-end justify-between gap-4 flex-wrap">
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black tracking-tight">
                   Events around you!
                 </h2>
+                {/* List / Map view toggle */}
+                <div className="flex border-[2.5px] border-black shadow-[2px_2px_0px_#000] overflow-hidden shrink-0">
+                  <button
+                    onClick={() => setEventsViewMode('list')}
+                    aria-pressed={eventsViewMode === 'list'}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold transition-colors ${eventsViewMode === 'list' ? 'bg-[#FFDE59] text-black' : 'bg-white text-black hover:bg-neutral-100'}`}
+                  >
+                    <List className="w-3.5 h-3.5 stroke-[2.5]" /> List
+                  </button>
+                  <div className="w-[2px] bg-black" />
+                  <button
+                    onClick={() => setEventsViewMode('map')}
+                    aria-pressed={eventsViewMode === 'map'}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold transition-colors ${eventsViewMode === 'map' ? 'bg-[#FFDE59] text-black' : 'bg-white text-black hover:bg-neutral-100'}`}
+                  >
+                    <MapIcon className="w-3.5 h-3.5 stroke-[2.5]" /> Map
+                  </button>
+                </div>
               </div>
 
               <EventDiscoveryBar
@@ -213,7 +235,21 @@ export default function App() {
                 onResetFilters={handleResetFilters}
               />
 
-              {monthGroups.length > 0 ? (
+              {eventsViewMode === 'map' ? (
+                <div className="mt-4">
+                  <Suspense fallback={
+                    <div className="w-full h-[420px] sm:h-[500px] border-[2.5px] border-black shadow-[4px_4px_0px_#000] bg-neutral-100 flex items-center justify-center">
+                      <span className="text-sm font-bold text-neutral-500 animate-pulse">Loading map…</span>
+                    </div>
+                  }>
+                    <EventMap
+                      events={filteredActiveEvents}
+                      onEventClick={handleSelectEvent}
+                      className="h-[420px] sm:h-[500px]"
+                    />
+                  </Suspense>
+                </div>
+              ) : monthGroups.length > 0 ? (
                 <div className="mt-4">
                   {monthGroups.map((group) => (
                     <MonthSection

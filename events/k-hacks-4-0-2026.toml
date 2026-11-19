@@ -10,6 +10,8 @@ registration_url = "https://k-hacks.kurukshetraceg.org.in/"
 website = "https://k-hacks.kurukshetraceg.org.in/"
 city = "Chennai"
 venue = "Anna University, CEG Campus, Chennai"
+latitude = 13.0101
+longitude = 80.2354
 fee = "Free"
 tags = [
   "Hackathon",
