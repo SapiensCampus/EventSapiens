@@ -198,11 +198,20 @@ export default function App() {
               initialSearchQuery={searchQuery}
             />
 
-            <section id="events-section" className="max-w-7xl mx-auto px-4 sm:px-8 pb-16 pt-8">
+            <section id="events-section" className="max-w-7xl mx-auto px-4 sm:px-8 pb-16 pt-5">
               <div className="mb-6 flex items-end justify-between gap-4 flex-wrap">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black tracking-tight">
-                  Events around you!
-                </h2>
+                <div>
+                  <div className="inline-flex items-center gap-1.5 bg-[#FFDE59] border-[2px] border-black px-2.5 py-0.5 text-[11px] font-black uppercase tracking-wider shadow-[2px_2px_0px_#000] mb-2">
+                    <span>⚡</span>
+                    <span>Live Directory</span>
+                  </div>
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-black tracking-tight">
+                    Events around you!
+                  </h2>
+                  <p className="mt-1 text-xs sm:text-sm text-neutral-600 font-medium">
+                    Discover upcoming hackathons, symposiums, and student meetups across Tamil Nadu.
+                  </p>
+                </div>
                 {/* List / Map view toggle */}
                 <div className="flex border-[2.5px] border-black shadow-[2px_2px_0px_#000] overflow-hidden shrink-0">
                   <button
