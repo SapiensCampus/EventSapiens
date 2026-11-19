@@ -13,9 +13,9 @@ fee = "Free"
 
 # Location (required if Offline or Hybrid)
 city = "Chennai"
-venue = "EmpowerED Careers, Sai Pride, Guindy"
-latitude = 13.0067
-longitude = 80.2023
+venue = "Office No. 1, Sai Pride, A24, 3rd Phase, Thiru Vi Ka Industrial Estate, SIDCO Industrial Estate, Guindy"
+latitude = 13.0168
+longitude = 80.2099
 
 # Search tags & metadata
 tags = [
