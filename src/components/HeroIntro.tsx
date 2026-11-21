@@ -15,12 +15,14 @@ import {
   BookOpen,
   Music,
 } from "lucide-react";
+import { TAMIL_NADU_CITIES } from "../lib/event-utils";
 
 interface HeroIntroProps {
   onExploreClick: () => void;
   onSearch?: (query: string, city?: string) => void;
   onSelectCategory?: (category: string) => void;
   initialSearchQuery?: string;
+  initialCity?: string;
   leftIllustrationSlot?: React.ReactNode;
   rightIllustrationSlot?: React.ReactNode;
 }
@@ -33,32 +35,29 @@ const POPULAR_CHIPS = [
   { label: "Cultural", icon: Music, query: "Cultural" },
 ];
 
-const CITIES = [
-  "Tamil Nadu",
-  "Chennai",
-  "Coimbatore",
-  "Madurai",
-  "Trichy",
-  "Salem",
-  "Vellore",
-  "Tirunelveli",
-  "Erode",
-];
+const CITIES = ["Tamil Nadu", ...TAMIL_NADU_CITIES];
 
 export const HeroIntro: React.FC<HeroIntroProps> = ({
   onExploreClick,
   onSearch,
   onSelectCategory,
   initialSearchQuery = "",
+  initialCity = "all",
   leftIllustrationSlot,
   rightIllustrationSlot,
 }) => {
   const [query, setQuery] = useState(initialSearchQuery);
-  const [selectedCity, setSelectedCity] = useState("Tamil Nadu");
+  const [selectedCity, setSelectedCity] = useState(
+    initialCity === "all" ? "Tamil Nadu" : initialCity
+  );
 
   useEffect(() => {
     setQuery(initialSearchQuery);
   }, [initialSearchQuery]);
+
+  useEffect(() => {
+    setSelectedCity(initialCity === "all" ? "Tamil Nadu" : initialCity);
+  }, [initialCity]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -194,7 +193,7 @@ export const HeroIntro: React.FC<HeroIntroProps> = ({
                 className="bg-transparent text-xs sm:text-sm font-bold text-black outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 cursor-pointer py-1 pl-1.5 pr-6 appearance-none"
                 aria-label="Filter by location"
               >
-                {CITIES.map((c) => (
+                {(CITIES.includes(selectedCity) ? CITIES : [...CITIES, selectedCity]).map((c) => (
                   <option key={c} value={c} className="font-sans font-bold">
                     {c}
                   </option>
