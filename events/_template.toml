@@ -21,6 +21,9 @@ fee = "Free" # or "₹150 / Team"
 # Location (required if Offline or Hybrid)
 city = "Chennai"
 venue = "Ada Lovelace Auditorium, College Campus"
+# Optional: GPS coordinates for the map view (run `bun run geocode` to auto-fill from city/venue)
+# latitude = 13.0827
+# longitude = 80.2707
 
 # Search tags & metadata
 tags = ["Hackathon", "Open Source", "Web Dev", "Students"]
