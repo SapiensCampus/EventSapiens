@@ -128,7 +128,7 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ## 💛 Attribution & Community
 
-- **Brought to you by:** [Sapiens Campus](https://codesapiens.in)
+- **Brought to you by:** [Sapiens Campus](https://sapienscampus.in/)
 - **Inspiration:** [TamilNadu.tech](https://tamilnadu.tech/) — an inspiring open-source initiative uniting tech community meetups across Tamil Nadu.
 - **WhatsApp Community:** [Join Sapiens Campus Chat](https://chat.whatsapp.com/IiaPFDThmGk9UEoYzvoXWU)
 - **LinkedIn:** [Sapiens Campus Community](https://www.linkedin.com/company/codesapiens-community/posts/)

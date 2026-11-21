@@ -43,10 +43,10 @@ export const EventCard: React.FC<EventCardProps> = ({
   // Registration box tone: red when closing soon, yellow when open, grey when closed
   const deadlineTone =
     status === 'Closed'
-      ? 'bg-neutral-100 border-neutral-400 text-neutral-700'
+      ? 'bg-neutral-200 text-neutral-800'
       : status === 'Closing Soon'
-      ? 'bg-[#FEE2E2] border-[#F87171] text-[#991B1B]'
-      : 'bg-[#FEF9C3] border-[#FACC15] text-[#854D0E]';
+      ? 'bg-[#FECACA] text-black'
+      : 'bg-[#FEF08A] text-black';
 
   // Month tag color
   const monthName = new Date(event.event_date + 'T00:00:00Z').toLocaleString('en-US', {
@@ -114,30 +114,36 @@ export const EventCard: React.FC<EventCardProps> = ({
         </div>
 
         {/* Event date vs. registration deadline, shown side by side */}
-        <div className="mt-4 grid grid-cols-2 gap-2">
-          <div className="bg-[#DBEAFE] border border-[#93C5FD] rounded-md px-2.5 py-2 text-[#1E3A8A]">
-            <div className="flex items-center gap-1 text-[11px] font-semibold">
-              <CalendarDays className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+        <div className={`mt-4 grid gap-2.5 ${event.registration_deadline ? 'grid-cols-2' : 'grid-cols-1'}`}>
+          <div className="bg-[#ddebcb] border-[2px] border-black shadow-[2px_2px_0px_#000] px-2.5 py-2 text-black">
+            <div className="flex items-center gap-1.5 text-[10px] font-mono font-black uppercase tracking-wider text-black">
+              <CalendarDays className="w-3.5 h-3.5 stroke-[2.5] shrink-0 text-black" aria-hidden="true" />
               <span>Event Date</span>
             </div>
-            <time dateTime={event.event_date} className="mt-1 block text-sm font-black text-black">
+            <time dateTime={event.event_date} className="mt-1 block text-xs sm:text-sm font-black text-black">
               {formatCardDate(event.event_date)}
             </time>
           </div>
 
           {event.registration_deadline && (
-            <div className={`border rounded-md px-2.5 py-2 ${deadlineTone}`}>
-              <div className="flex items-center gap-1 text-[11px] font-semibold">
-                <Clock className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-                <span>{status === 'Closed' ? 'Registration Closed' : 'Registration Closes'}</span>
+            <div className={`border-[2px] border-black shadow-[2px_2px_0px_#000] px-2.5 py-2 ${deadlineTone}`}>
+              <div className="flex items-center gap-1.5 text-[10px] font-mono font-black uppercase tracking-wider text-black">
+                <Clock className="w-3.5 h-3.5 stroke-[2.5] shrink-0 text-black" aria-hidden="true" />
+                <span>{status === 'Closed' ? 'Reg Closed' : 'Reg Closes'}</span>
               </div>
-              <div className="mt-1 flex flex-wrap items-center gap-1">
-                <time dateTime={event.registration_deadline} className="text-sm font-black">
+              <div className="mt-1 flex flex-wrap items-center gap-1.5">
+                <time dateTime={event.registration_deadline} className="text-xs sm:text-sm font-black text-black">
                   {formatCardDate(event.registration_deadline)}
                 </time>
                 {status !== 'Closed' && (
-                  <span className="inline-flex items-center gap-0.5 rounded-full bg-[#FEF08A] border border-[#EAB308] px-1.5 py-px text-[10px] font-bold text-[#854D0E] whitespace-nowrap">
-                    <Clock className="w-2.5 h-2.5" aria-hidden="true" />
+                  <span
+                    className={`inline-flex items-center gap-1 border-[1.5px] border-black px-1.5 py-0.5 text-[10px] font-mono font-black uppercase tracking-wider shadow-[1px_1px_0px_#000] ${
+                      status === 'Closing Soon'
+                        ? 'bg-[#FF7051] text-white'
+                        : 'bg-[#FFDE59] text-black'
+                    }`}
+                  >
+                    <Clock className="w-2.5 h-2.5 stroke-[2.5]" aria-hidden="true" />
                     {formatDeadlineCountdown(daysLeft)}
                   </span>
                 )}

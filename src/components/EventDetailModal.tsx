@@ -125,7 +125,7 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
                 <Calendar className="w-4 h-4 stroke-[2.5] text-black" />
               </div>
               <div>
-                <p className="text-[10px] font-mono font-bold uppercase text-neutral-500">
+                <p className="text-[10px] font-mono font-black uppercase tracking-wider text-neutral-700">
                   Event Date
                 </p>
                 <p className="text-xs sm:text-sm font-black text-black">{formattedDate}</p>
@@ -137,12 +137,12 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
                 <Clock className="w-4 h-4 stroke-[2.5] text-black" />
               </div>
               <div>
-                <p className="text-[10px] font-mono font-bold uppercase text-neutral-500">
+                <p className="text-[10px] font-mono font-black uppercase tracking-wider text-neutral-700">
                   Registration
                 </p>
                 <p className="text-xs sm:text-sm font-black text-black">{status}</p>
                 {event.registration_deadline && (
-                  <p className="text-[11px] font-mono text-neutral-600">
+                  <p className="text-[11px] font-mono font-bold text-neutral-700 mt-0.5">
                     Deadline: {event.registration_deadline}
                   </p>
                 )}
