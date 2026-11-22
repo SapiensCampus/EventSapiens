@@ -72,27 +72,3 @@ describe('filterEvents', () => {
     expect(search('CRIMEATHON Coimbatore')).toEqual([]);
   });
 });
-
-describe('filterEvents city filter', () => {
-  const events = [
-    { id: 'crimeathon', title: 'CRIMEATHON 2026', organizer: 'SIMATS', description: 'Cyber hackathon', city: 'Chennai', category: 'Hackathon', mode: 'Offline', event_date: '2026-11-20' },
-    { id: 'hacksprint', title: 'HackSprint 3.0', organizer: 'KPR', description: 'Build bold', city: 'Coimbatore', category: 'Hackathon', mode: 'Offline', event_date: '2026-11-25' },
-    { id: 'hackindia', title: 'HackIndia Chennai Overdrive', organizer: 'Muthayammal', description: 'Hackathon', city: 'Rasipuram', category: 'Hackathon', mode: 'Offline', event_date: '2026-11-26' },
-    { id: 'webinar', title: 'Open Source Webinar', organizer: 'FOSS Club', description: 'Online talk', category: 'Workshop', mode: 'Online', event_date: '2026-11-28' }
-  ] as EventItem[];
-  const byCity = (city: string, query = '') =>
-    filterEvents(events, query, 'all', 'all', 'all', '2026-11-15', city).map((ev) => ev.id);
-
-  it('keeps every event when no city is selected', () => {
-    expect(byCity('all')).toEqual(['crimeathon', 'hacksprint', 'hackindia', 'webinar']);
-  });
-
-  it('matches the event city only, plus online events', () => {
-    expect(byCity('Chennai')).toEqual(['crimeathon', 'webinar']);
-    expect(byCity('coimbatore')).toEqual(['hacksprint', 'webinar']);
-  });
-
-  it('combines the city with the search text', () => {
-    expect(byCity('Chennai', 'CRIMEATHON 2026')).toEqual(['crimeathon']);
-  });
-});

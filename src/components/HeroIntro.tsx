@@ -15,7 +15,7 @@ import {
   BookOpen,
   Music,
 } from "lucide-react";
-import { TAMIL_NADU_CITIES } from "../lib/event-utils";
+import { tamilNaduCities } from "../lib/event-utils";
 
 interface HeroIntroProps {
   onExploreClick: () => void;
@@ -35,7 +35,7 @@ const POPULAR_CHIPS = [
   { label: "Cultural", icon: Music, query: "Cultural" },
 ];
 
-const CITIES = ["Tamil Nadu", ...TAMIL_NADU_CITIES];
+const cityOptions = ["Tamil Nadu", ...tamilNaduCities];
 
 export const HeroIntro: React.FC<HeroIntroProps> = ({
   onExploreClick,
@@ -193,7 +193,7 @@ export const HeroIntro: React.FC<HeroIntroProps> = ({
                 className="bg-transparent text-xs sm:text-sm font-bold text-black outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 cursor-pointer py-1 pl-1.5 pr-6 appearance-none"
                 aria-label="Filter by location"
               >
-                {(CITIES.includes(selectedCity) ? CITIES : [...CITIES, selectedCity]).map((c) => (
+                {(cityOptions.includes(selectedCity) ? cityOptions : [...cityOptions, selectedCity]).map((c) => (
                   <option key={c} value={c} className="font-sans font-bold">
                     {c}
                   </option>

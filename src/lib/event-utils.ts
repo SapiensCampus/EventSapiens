@@ -9,7 +9,7 @@ const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 const EVENT_MODES = ['Online', 'Offline', 'Hybrid'] as const;
 
 /** Cities offered in the location dropdowns ("Tamil Nadu" means no city filter). */
-export const TAMIL_NADU_CITIES = [
+export const tamilNaduCities = [
   'Chennai',
   'Coimbatore',
   'Madurai',

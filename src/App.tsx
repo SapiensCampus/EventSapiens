@@ -19,7 +19,7 @@ import {
   filterEvents,
   getEffectiveDateString,
   groupEventsIntoThisMonthAndUpcoming,
-  TAMIL_NADU_CITIES
+  tamilNaduCities
 } from './lib/event-utils';
 import type { EventItem } from './types/event';
 import { Inbox } from 'lucide-react';
@@ -86,7 +86,7 @@ export default function App() {
 
   // Cities for the filter bar: the standard list plus any city used by an active event
   const cities = useMemo(() => {
-    const set = new Set<string>(TAMIL_NADU_CITIES);
+    const set = new Set<string>(tamilNaduCities);
     activeEvents.forEach((ev) => {
       if (ev.city) set.add(ev.city);
     });
