@@ -7,6 +7,18 @@ import type { EventItem, MonthGroup, RegistrationStatus } from '../types/event';
 
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 const EVENT_MODES = ['Online', 'Offline', 'Hybrid'] as const;
+
+/** Cities offered in the location dropdowns ("Tamil Nadu" means no city filter). */
+export const tamilNaduCities = [
+  'Chennai',
+  'Coimbatore',
+  'Madurai',
+  'Trichy',
+  'Salem',
+  'Vellore',
+  'Tirunelveli',
+  'Erode'
+];
 const MILLISECONDS_PER_DAY = 86_400_000;
 
 function isValidDateString(value: unknown): value is string {
@@ -274,7 +286,8 @@ export function groupEventsIntoThisMonthAndUpcoming(
 }
 
 /**
- * Filters events by text search, mode, category, and status.
+ * Filters events by text search, mode, category, status, and city.
+ * Online events are kept for any city, since anyone can join them.
  */
 export function filterEvents(
   events: EventItem[],
@@ -282,7 +295,8 @@ export function filterEvents(
   modeFilter: string,
   categoryFilter: string,
   statusFilter: string,
-  refDateStr?: string
+  refDateStr?: string,
+  cityFilter = 'all'
 ): EventItem[] {
   const terms = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
 
@@ -290,6 +304,13 @@ export function filterEvents(
     // Mode filter
     if (modeFilter && modeFilter !== 'all') {
       if (ev.mode.toLowerCase() !== modeFilter.toLowerCase()) {
+        return false;
+      }
+    }
+
+    // City filter
+    if (cityFilter && cityFilter !== 'all' && ev.mode !== 'Online') {
+      if ((ev.city || '').toLowerCase() !== cityFilter.toLowerCase()) {
         return false;
       }
     }

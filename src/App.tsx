@@ -18,7 +18,8 @@ import { loadActiveEvents, loadArchivedEvents, getEventById } from './lib/events
 import {
   filterEvents,
   getEffectiveDateString,
-  groupEventsIntoThisMonthAndUpcoming
+  groupEventsIntoThisMonthAndUpcoming,
+  tamilNaduCities
 } from './lib/event-utils';
 import type { EventItem } from './types/event';
 import { Inbox, List, Map as MapIcon } from 'lucide-react';
@@ -42,6 +43,10 @@ export default function App() {
     if (typeof window === 'undefined') return 'all';
     return new URLSearchParams(window.location.search).get('category') || 'all';
   });
+  const [selectedCity, setSelectedCity] = useState(() => {
+    if (typeof window === 'undefined') return 'all';
+    return new URLSearchParams(window.location.search).get('city') || 'all';
+  });
 
   const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
   const [isContributeModalOpen, setIsContributeModalOpen] = useState(false);
@@ -60,12 +65,15 @@ export default function App() {
     if (selectedCategory !== 'all') url.searchParams.set('category', selectedCategory);
     else url.searchParams.delete('category');
 
+    if (selectedCity !== 'all') url.searchParams.set('city', selectedCity);
+    else url.searchParams.delete('city');
+
     const newUrl = url.pathname + url.search + url.hash;
     const currentUrl = window.location.pathname + window.location.search + window.location.hash;
     if (newUrl !== currentUrl) {
       window.history.replaceState(null, '', newUrl);
     }
-  }, [searchQuery, selectedMode, selectedCategory]);
+  }, [searchQuery, selectedMode, selectedCategory, selectedCity]);
 
   // Load events
   const activeEvents = useMemo(() => loadActiveEvents(), []);
@@ -79,6 +87,16 @@ export default function App() {
     });
     return Array.from(set).sort();
   }, [activeEvents]);
+
+  // Cities for the filter bar: the standard list plus any city used by an active event
+  const cities = useMemo(() => {
+    const set = new Set<string>(tamilNaduCities);
+    activeEvents.forEach((ev) => {
+      if (ev.city) set.add(ev.city);
+    });
+    if (selectedCity !== 'all') set.add(selectedCity);
+    return Array.from(set).sort();
+  }, [activeEvents, selectedCity]);
 
   // Support URL hash deep-linking (e.g. #ssn-invente-hackathon)
   useEffect(() => {
@@ -132,9 +150,10 @@ export default function App() {
       selectedMode,
       selectedCategory,
       'all',
-      referenceDate
+      referenceDate,
+      selectedCity
     );
-  }, [activeEvents, referenceDate, searchQuery, selectedMode, selectedCategory]);
+  }, [activeEvents, referenceDate, searchQuery, selectedMode, selectedCategory, selectedCity]);
 
   // Group active events into this month and upcoming
   const monthGroups = useMemo(() => {
@@ -145,6 +164,7 @@ export default function App() {
     setSearchQuery('');
     setSelectedMode('all');
     setSelectedCategory('all');
+    setSelectedCity('all');
   };
 
   const handleExploreClick = () => {
@@ -155,11 +175,8 @@ export default function App() {
   };
 
   const handleHeroSearch = (query: string, city?: string) => {
-    let finalQuery = query.trim();
-    if (city && city !== 'all' && city !== 'Tamil Nadu') {
-      finalQuery = finalQuery ? `${finalQuery} ${city}` : city;
-    }
-    setSearchQuery(finalQuery);
+    setSearchQuery(query.trim());
+    setSelectedCity(city && city !== 'Tamil Nadu' ? city : 'all');
     const el = document.getElementById('events-section');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
@@ -196,6 +213,7 @@ export default function App() {
               onSearch={handleHeroSearch}
               onSelectCategory={handleHeroCategorySelect}
               initialSearchQuery={searchQuery}
+              initialCity={selectedCity}
             />
 
             <section id="events-section" className="max-w-7xl mx-auto px-4 sm:px-8 pb-16 pt-5">
@@ -240,6 +258,9 @@ export default function App() {
                 selectedCategory={selectedCategory}
                 onCategoryChange={setSelectedCategory}
                 categories={categories}
+                selectedCity={selectedCity}
+                onCityChange={setSelectedCity}
+                cities={cities}
                 totalResults={filteredActiveEvents.length}
                 onResetFilters={handleResetFilters}
               />

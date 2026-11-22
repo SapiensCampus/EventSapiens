@@ -14,6 +14,9 @@ interface EventDiscoveryBarProps {
   selectedCategory: string;
   onCategoryChange: (category: string) => void;
   categories: string[];
+  selectedCity: string;
+  onCityChange: (city: string) => void;
+  cities: string[];
   totalResults: number;
   onResetFilters: () => void;
 }
@@ -26,15 +29,22 @@ export const EventDiscoveryBar: React.FC<EventDiscoveryBarProps> = ({
   selectedCategory,
   onCategoryChange,
   categories,
+  selectedCity,
+  onCityChange,
+  cities,
   totalResults,
   onResetFilters
 }) => {
-  const isFiltered = Boolean(searchQuery) || selectedMode !== 'all' || selectedCategory !== 'all';
+  const isFiltered =
+    Boolean(searchQuery) ||
+    selectedMode !== 'all' ||
+    selectedCategory !== 'all' ||
+    selectedCity !== 'all';
 
   return (
     <div className="pt-6 pb-6">
-      <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
-        <div className="sm:col-span-6 relative">
+      <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-12 gap-3 items-center">
+        <div className="sm:col-span-3 lg:col-span-4 relative">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-black">
             <Search className="w-4 h-4 stroke-[2.5]" />
           </div>
@@ -58,7 +68,23 @@ export const EventDiscoveryBar: React.FC<EventDiscoveryBarProps> = ({
           )}
         </div>
 
-        <div className="sm:col-span-3">
+        <div className="lg:col-span-2">
+          <select
+            aria-label="Filter events by city"
+            value={selectedCity}
+            onChange={(e) => onCityChange(e.target.value)}
+            className="w-full px-3 py-2.5 bg-white border-[2.5px] border-black shadow-[3px_3px_0px_#000] text-xs font-bold text-black outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus-visible:ring-0 cursor-pointer"
+          >
+            <option value="all">All Cities</option>
+            {cities.map((city) => (
+              <option key={city} value={city}>
+                {city}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="lg:col-span-3">
           <select
             aria-label="Filter events by participation mode"
             value={selectedMode}
@@ -72,7 +98,7 @@ export const EventDiscoveryBar: React.FC<EventDiscoveryBarProps> = ({
           </select>
         </div>
 
-        <div className="sm:col-span-3">
+        <div className="lg:col-span-3">
           <select
             aria-label="Filter events by category"
             value={selectedCategory}
