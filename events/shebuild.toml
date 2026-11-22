@@ -1,0 +1,22 @@
+title = "SheBuilds November Meetup"
+description = "Cybersecurity is everyone’s responsibility. Join us to explore real-world cyber threats, everyday vulnerabilities, and what really happens behind the screens!"
+organizer = "SheBuilds"
+category = "Meetup"
+mode = "Offline"
+event_date = "2026-11-28"
+end_date = "2026-11-29"
+registration_deadline = "2026-11-26"
+registration_url = "https://luma.com/dprjx6l1"
+website = "https://shebuilds-chennai.tech/"
+city = "Chennai"
+venue = "Ideas2IT, Guindy"
+fee = "Free"
+tags = [
+  "Meetup",
+  "Cybersecurity",
+  "Finance",
+  "Security",
+  "Secure AI agents",
+  "Engineering"
+]
+
