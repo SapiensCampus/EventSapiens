@@ -10,6 +10,8 @@ registration_url = "https://hackindia.org/2027/hackindia-chennai-overdrive-2027"
 website = "https://hackindia.org/2027/hackindia-chennai-overdrive-2027"
 city = "Rasipuram"
 venue = "Muthayammal Engineering College, Kakkaveri, Rasipuram, Namakkal District, Tamil Nadu"
+latitude = 11.4568
+longitude = 78.1735
 fee = "Free"
 tags = [
   "Hackathon",

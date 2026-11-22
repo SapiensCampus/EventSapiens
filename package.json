@@ -15,24 +15,29 @@
     "typecheck": "bun node_modules/typescript/bin/tsc --noEmit",
     "lint": "bun run typecheck",
     "validate": "bun scripts/validate-events.ts",
+    "geocode": "npx tsx scripts/geocode-events.ts",
     "archive": "bun scripts/archive-events.ts",
     "archive:dry-run": "bun scripts/archive-events.ts --dry-run",
     "test": "bun test",
     "check": "bun run validate && bun test && bun run lint && bun run build"
   },
   "dependencies": {
+    "@types/supercluster": "7.1.3",
     "lucide-react": "^0.546.0",
+    "maplibre-gl": "6.19.0",
     "react": "^19.0.1",
     "react-dom": "^19.0.1",
     "react-icons": "^5.7.0",
-    "smol-toml": "^1.9.1"
+    "smol-toml": "^1.9.1",
+    "supercluster": "9.1.0"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
-    "@vitejs/plugin-react": "^6.1.1",
+    "@types/geojson": "^7946.0.16",
     "@types/node": "^22.14.0",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
     "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2",
     "vite": "^8.3.0"

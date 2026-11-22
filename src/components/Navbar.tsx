@@ -28,7 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     setMobileMenuOpen(false);
   };
   return (
-    <header className="w-full bg-[#FFF8DC] pt-5 pb-3 sticky top-0 z-40 transition-colors">
+    <header className="w-full bg-[#FFF8DC]/95 backdrop-blur-sm border-b-[2.5px] border-black pt-4 pb-3 sticky top-0 z-40 transition-colors shadow-[0_2px_0px_rgba(0,0,0,0.03)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3">
         <a
           href={import.meta.env.BASE_URL}

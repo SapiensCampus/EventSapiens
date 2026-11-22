@@ -13,7 +13,8 @@ import {
   Share2,
   Check,
   Building2,
-  Layers
+  Layers,
+  Navigation
 } from 'lucide-react';
 import type { EventItem } from '../types/event';
 import {
@@ -50,6 +51,17 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
   const formattedDate = formatDateRange(event.event_date, event.end_date);
   const googleCalUrl = generateGoogleCalendarUrl(event);
   const safeRegUrl = sanitizeExternalUrl(event.registration_url);
+
+  // Directions URL — opens Google Maps (or Apple Maps on iOS)
+  const directionsUrl = (event.mode !== 'Online' && (event.venue || event.city))
+    ? (() => {
+        const q = encodeURIComponent([event.venue, event.city].filter(Boolean).join(', '));
+        if (typeof navigator !== 'undefined' && /iPhone|iPad|iPod/.test(navigator.userAgent)) {
+          return `maps://maps.apple.com/?q=${q}`;
+        }
+        return `https://www.google.com/maps/search/?api=1&query=${q}`;
+      })()
+    : null;
 
   const handleShare = async () => {
     const shareUrl = new URL(`#${event.id}`, window.location.href).toString();
@@ -235,6 +247,18 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
               <Calendar className="w-3.5 h-3.5 stroke-[2.5]" />
               <span>Google Calendar</span>
             </a>
+
+            {directionsUrl && (
+              <a
+                href={directionsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 px-3 py-2 text-xs font-bold text-black bg-[#BBF7D0] hover:bg-[#86EFAC] border-[1.5px] border-black cursor-pointer shadow-[1.5px_1.5px_0px_#000]"
+              >
+                <Navigation className="w-3.5 h-3.5 stroke-[2.5]" />
+                <span>Directions</span>
+              </a>
+            )}
           </div>
 
           <div>

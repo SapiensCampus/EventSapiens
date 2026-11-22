@@ -31,6 +31,9 @@ export interface RawEventToml {
   fee?: string; // e.g. "Free", "₹150 / Team"
   stages?: EventStage[];
   website?: string;
+  // Map coordinates (optional — added when geocoding is available)
+  latitude?: number;
+  longitude?: number;
 }
 
 export interface EventItem extends RawEventToml {
